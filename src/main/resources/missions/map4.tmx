@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-down" width="150" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="106">
+ <tileset firstgid="1" name="player-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+  <image source="../skins/player/player-stand.png" width="14" height="34"/>
+ </tileset>
+ <tileset firstgid="2" name="grass" tilewidth="70" tileheight="70" tilecount="49" columns="7">
+  <image source="../../assets/tiles/tiles-dimensions/70x70/grass.png" trans="ff00ff" width="512" height="512"/>
+  <tile id="3">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="-4.75" y="-8.05201" width="79.6453" height="88.8947"/>
+   </objectgroup>
+  </tile>
+  <tile id="4">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="-6" y="-6.22067" width="80.25" height="80.7207"/>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="1.25" y="-0.25" width="68.75" height="70"/>
+   </objectgroup>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="blocked" value="blocked"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="-5" y="-5.25" width="82.5" height="79.5"/>
+   </objectgroup>
+  </tile>
+  <tile id="35">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="-7.75" y="-7.25" width="86" height="85"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="51" name="enemy-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+  <image source="../skins/enemy/enemy-stand.png" width="14" height="34"/>
+ </tileset>
+ <tileset firstgid="52" name="hostage-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+  <image source="../skins/hostage/hostage-stand.png" trans="ff00ff" width="20" height="40"/>
+ </tileset>
+ <tileset firstgid="53" name="vip-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+  <image source="../skins/vip/vip-stand.png" trans="ff00ff" width="14" height="34"/>
+ </tileset>
+ <layer id="1" name="Map" width="150" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt2DEKwCAMQNFM7e7aQ3j/2xVxVlqsCPY9yJ7hQyARAPBfV2eOhXuxrxTaYg5tMUtpq3cvWwMAAAAwIocfBN8qTZ2rl2ArmuKpN791TQEAVDeikgUj
+  </data>
+ </layer>
+ <objectgroup id="2" name="Objects">
+  <object id="83" x="0" y="280">
+   <polygon points="0,0 490,0 490,-70 0,-70"/>
+  </object>
+  <object id="84" x="490" y="210">
+   <polygon points="0,0 0,140 70,140 70,70"/>
+  </object>
+  <object id="85" x="560" y="350">
+   <polygon points="0,0 0,70 70,70 70,0 0,-70"/>
+  </object>
+  <object id="86" x="630" y="350">
+   <polygon points="0,0 0,140 70,140 70,70"/>
+  </object>
+  <object id="87" x="700" y="420">
+   <polygon points="0,0 0,70 910,70 910,0"/>
+  </object>
+  <object id="88" x="490" y="1120">
+   <polygon points="0,0 0,70 840,70 840,0"/>
+  </object>
+  <object id="89" x="1260" y="1120">
+   <polygon points="0,0 70,-70 140,-70 140,0"/>
+  </object>
+  <object id="91" x="1330" y="1050">
+   <polygon points="0,0 140,-140 140,0"/>
+  </object>
+  <object id="92" x="1470" y="910">
+   <polygon points="0,0 0,70 630,70 630,0"/>
+  </object>
+  <object id="93" name="Player" gid="1" x="35.4242" y="183.667" width="50" height="70"/>
+  <object id="94" name="Enemy" gid="51" x="808.152" y="389.727" width="50" height="70"/>
+  <object id="95" name="Enemy" gid="51" x="1429.36" y="395.788" width="50" height="70"/>
+  <object id="96" name="Vip" gid="53" x="865.727" y="1104.88" width="50" height="70"/>
+  <object id="97" name="Hostage" gid="52" x="1974.82" y="880.636" width="50" height="70"/>
+  <object id="98" name="Hostage" gid="52" x="1889.97" y="877.606" width="50" height="70"/>
+  <object id="99" name="Enemy" gid="51" x="1490.15" y="831.667" width="50" height="70"/>
+  <object id="100" name="Enemy" gid="51" x="1093.18" y="1104.39" width="50" height="70"/>
+  <object id="101" name="Enemy" gid="51" x="665.909" y="1104.39" width="50" height="70"/>
+  <object id="102" name="DeathZone" x="0" y="1330">
+   <polygon points="0,0 0,70 2800,70 2800,0"/>
+  </object>
+ </objectgroup>
+</map>
