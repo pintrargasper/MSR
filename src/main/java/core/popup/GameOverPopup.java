@@ -105,19 +105,19 @@ public class GameOverPopup extends Table implements Screen {
         String text;
         switch (cause) {
             case "lives" -> {
-                text = "You rain out of lives";
+                text = Language.get("label_rain_lives");
             }
             case "hostage" -> {
-                text = "To many hostages were killed";
+                text = Language.get("label_to_many_hostages");
             }
             case "vip" -> {
-                text = "The VIP person was killed";
+                text = Language.get("label_vip_killed");
             }
             default -> {
                 text = "";
             }
         }
         causeLabel.setText(text);
-        ammoCostsLabel.setText("Ammo costs: " + ammoCosts);
+        ammoCostsLabel.setText(Language.get("label_game_over_ammo_costs") + ": " + ammoCosts);
     }
 }

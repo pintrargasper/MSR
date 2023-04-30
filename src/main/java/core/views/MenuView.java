@@ -113,7 +113,7 @@ public class MenuView {
         Label positionLabel = new Label(String.valueOf(index), skin);
         Label missionNameLabel = new Label(missionName, skin);
         Label scoreLabel = new Label(Language.get("label_score") + ": " + score, skin);
-        Label usernameLabel = new Label(Language.get("label_by_player") + ":" + username, skin);
+        Label usernameLabel = new Label(Language.get("label_by_player") + ": " + username, skin);
 
         Image missionImage;
         try {

@@ -82,15 +82,12 @@ public class ShopPopup extends Table implements Screen {
                         account.setMoney(account.getMoney() - mission.getPrice());
                         closePopup();
                         openBasicPopup(Language.get("string_mission_bought_successfully"));
-                        return;
                     } else if (result.matches("0")) {
                         closePopup();
                         openBasicPopup(Language.get("string_not_enough_money"));
-                        return;
                     } else {
                         closePopup();
                         openBasicPopup(Language.get("string_shop_something_wrong"));
-                        return;
                     }
                 } else {
                     var result = SkinConnection.buySkin(customSkin.getId());
@@ -104,11 +101,9 @@ public class ShopPopup extends Table implements Screen {
                     }  else if (result.matches("0")) {
                         closePopup();
                         openBasicPopup(Language.get("string_not_enough_money"));
-                        return;
                     } else {
                         closePopup();
                         openBasicPopup(Language.get("string_shop_something_wrong"));
-                        return;
                     }
                 }
                 NavigationBar.updateMoney();
