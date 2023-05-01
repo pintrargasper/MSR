@@ -5,13 +5,11 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
-import core.Background;
-import core.GameData;
-import core.Language;
-import core.ScreenChanger;
+import core.*;
 import core.database.objects.MissionBestScore;
 import core.popup.BasicPopup;
 import core.popup.KeySelectionPopup;
@@ -29,6 +27,7 @@ public class MenuView {
     private final TextButton missionsButton, settingsButton, exitButton;
     private final NavigationBar navigationBar;
     private final ScreenChanger screenChanger;
+    private final Utils utils;
     private final KeySelectionPopup keySelectionPopup;
     private final BasicPopup basicPopup;
     private final SettingsPopup settingsPopup;
@@ -47,9 +46,10 @@ public class MenuView {
         this.exitButton = new TextButton(Language.get("button_exit"), skin);
         this.navigationBar = new NavigationBar();
         this.screenChanger = new ScreenChanger();
-        this.keySelectionPopup = new KeySelectionPopup(this, stage, skin);
+        this.utils = new Utils();
+        this.keySelectionPopup = new KeySelectionPopup(this, stage, utils, skin);
         this.basicPopup = new BasicPopup(stage, skin);
-        this.settingsPopup = new SettingsPopup(this, keySelectionPopup, basicPopup, stage, screenChanger);
+        this.settingsPopup = new SettingsPopup(keySelectionPopup, basicPopup, stage, utils, screenChanger);
     }
 
     public Table getView(Stage stage, ArrayList<MissionBestScore> missionBestScores) {
@@ -93,6 +93,8 @@ public class MenuView {
         settingsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                utils.disableAll(stage, true);
+                settingsPopup.setPopup(missionsButton, settingsButton, exitButton);
                 stage.addActor(settingsPopup);
             }
         });
@@ -141,13 +143,6 @@ public class MenuView {
         settingsPopup.resize(width, height);
         keySelectionPopup.resize(width, height);
         basicPopup.resize(width, height);
-    }
-
-    public void closeSettingsOrKeySelectionPopup() {
-        var actors = stage.getActors();
-        actors.get(actors.size - 1).remove();
-        keySelectionPopup.disableMultipleProcessor();
-        Gdx.input.setInputProcessor(stage);
     }
 
     public KeySelectionPopup getKeySelectionPopup() {

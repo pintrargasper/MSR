@@ -13,9 +13,11 @@ import com.badlogic.gdx.utils.Align;
 import core.Background;
 import core.GameData;
 import core.Language;
+import core.Utils;
 import core.database.SkinConnection;
 import core.objects.CustomSkin;
 import core.views.InventoryView;
+import jdk.jshell.execution.Util;
 
 import java.util.ArrayList;
 
@@ -30,7 +32,7 @@ public class InventoryPopup extends Table implements Screen {
     private BasicPopup basicPopup;
     private String player, bullet, cursor, aim, weapon;
 
-    public InventoryPopup(InventoryView inventoryView, Stage stage, Skin skin) {
+    public InventoryPopup(InventoryView inventoryView, Stage stage, Utils utils, Skin skin) {
         this.inventoryView = inventoryView;
         this.skin = skin;
         this.mainTable = new Table();
@@ -82,6 +84,7 @@ public class InventoryPopup extends Table implements Screen {
         closeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                utils.disableAll(stage, false);
                 inventoryView.closePopup();
             }
         });

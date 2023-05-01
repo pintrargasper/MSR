@@ -24,6 +24,7 @@ public class MissionView {
     private final TextButton allButton, completedButton, uncompletedButton, lockedButton;
     private final NavigationBar navigationBar;
     private final ScreenChanger screenChanger;
+    private final Utils utils;
     private final MissionPopup missionPopup;
 
     public MissionView(Stage stage) {
@@ -41,7 +42,8 @@ public class MissionView {
         this.lockedButton = new TextButton(Language.get("button_locked"), skin);
         this.navigationBar = new NavigationBar();
         this.screenChanger = new ScreenChanger();
-        this.missionPopup = new MissionPopup(this, skin);
+        this.utils = new Utils();
+        this.missionPopup = new MissionPopup(this, stage, utils, skin);
     }
 
     public Table getView(Stage stage, ArrayList<Mission> allMissionList, ArrayList<Mission> completedMissionList, ArrayList<Mission> uncompletedMissionList, ArrayList<Mission> lockedMissionList) {
@@ -119,6 +121,7 @@ public class MissionView {
 
             playButton.addListener(new ChangeListener() {
                 public void changed(ChangeEvent event, Actor actor) {
+                    utils.disableAll(stage, true);
                     missionPopup.setPopup(mission);
                     stage.addActor(missionPopup);
                 }
@@ -186,10 +189,5 @@ public class MissionView {
 
     public void resize(int width, int height) {
         missionPopup.resize(width, height);
-    }
-
-    public void closePopup() {
-        var actors = stage.getActors();
-        actors.get(actors.size - 1).remove();
     }
 }

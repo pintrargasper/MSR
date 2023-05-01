@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import core.GameData;
-import core.database.Utils;
+import core.Utils;
 import core.database.objects.Settings;
 import core.objects.Mission;
 import core.objects.game.*;

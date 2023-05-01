@@ -12,12 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import core.Background;
 import core.Language;
+import core.Utils;
 
 public class BasicPopup extends Table implements Screen {
 
     private final Table mainTable, innerTable, emptyTable;
     private final Label titleLabel;
     private final TextButton closeButton;
+    private final Utils utils;
 
     public BasicPopup(Stage stage, Skin skin) {
         this.mainTable = new Table();
@@ -25,6 +27,7 @@ public class BasicPopup extends Table implements Screen {
         this.emptyTable = new Table();
         this.titleLabel = new Label(Language.get("label_successfully_saved"), skin.get("medium-title", Label.LabelStyle.class));
         this.closeButton = new TextButton(Language.get("button_basic_close"), skin);
+        this.utils = new Utils();
 
         mainTable.setBackground(Background.setBackground(Background.strongRed));
         innerTable.setBackground(Background.setBackground(Background.white));
@@ -46,6 +49,7 @@ public class BasicPopup extends Table implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 closePopup(stage);
+                utils.disableAll(stage, false);
             }
         });
     }

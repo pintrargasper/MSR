@@ -1,6 +1,7 @@
 package core.popup;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -9,9 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-import core.Background;
-import core.Language;
-import core.ScreenChanger;
+import com.badlogic.gdx.utils.Array;
+import core.*;
 import core.screens.helper.processor.InputListener;
 import core.screens.helper.processor.KeyProcessor;
 import core.views.MenuView;
@@ -29,7 +29,7 @@ public class KeySelectionPopup extends Table implements Screen, InputListener {
     public final InputMultiplexer inputMultiplexer;
     public boolean isOpen;
 
-    public KeySelectionPopup(MenuView menuView, Stage stage, Skin skin) {
+    public KeySelectionPopup(MenuView menuView, Stage stage, Utils utils, Skin skin) {
         this.stage = stage;
         this.mainTable = new Table();
         this.innerTable = new Table();
@@ -72,7 +72,11 @@ public class KeySelectionPopup extends Table implements Screen, InputListener {
         closeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuView.closeSettingsOrKeySelectionPopup();
+                var actors = stage.getActors();
+                actors.get(actors.size - 1).remove();
+                disableMultipleProcessor();
+                utils.disableAll(stage, false);
+                Gdx.input.setInputProcessor(stage);
             }
         });
     }

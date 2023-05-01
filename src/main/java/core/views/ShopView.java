@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class ShopView {
 
+    private final Stage stage;
     private final Skin skin;
     private final Table mainTable, currentTable, combineTable, sideTable, emptyTable;
     private final ScrollPane scrollPane;
@@ -27,9 +28,9 @@ public class ShopView {
     private final NavigationBar navigationBar;
     public static final ArrayList<Mission> boughtMissions = new ArrayList<>();
     public static final ArrayList<CustomSkin> boughtSkins = new ArrayList<>();
+    private final Utils utils;
     private final BasicPopup basicPopup;
     private final ShopPopup shopPopup;
-    private final Stage stage;
 
     public ShopView(Stage stage) {
         this.stage = stage;
@@ -48,8 +49,9 @@ public class ShopView {
         this.aimButton = new TextButton(Language.get("button_aim"), skin);
         this.weaponButton = new TextButton(Language.get("button_weapon"), skin);
         this.navigationBar = new NavigationBar();
+        this.utils = new Utils();
         this.basicPopup = new BasicPopup(stage, skin);
-        this.shopPopup = new ShopPopup(basicPopup, stage, skin);
+        this.shopPopup = new ShopPopup(basicPopup, stage, utils, skin);
     }
 
     public Table getView(Stage stage, ArrayList<Mission> missionsList, ArrayList<CustomSkin> playerList, ArrayList<CustomSkin> bulletList, ArrayList<CustomSkin> cursorList, ArrayList<CustomSkin> aimList, ArrayList<CustomSkin> weaponList) {
@@ -123,6 +125,7 @@ public class ShopView {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     if (!buyButton.getText().toString().equals(Language.get("button_buy_purchased"))) {
+                        utils.disableAll(stage, true);
                         shopPopup.setPopup(mission.getName(), Money.format(mission.getPrice()), "Mission", mission, buyButton);
                         stage.addActor(shopPopup);
                     }
@@ -198,6 +201,7 @@ public class ShopView {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     if (!buyButton.getText().toString().equals(Language.get("button_buy_purchased"))) {
+                        utils.disableAll(stage, true);
                         shopPopup.setPopup(customSkin.getName(), Money.format(customSkin.getPrice()), "CustomSkin", customSkin, buyButton);
                         stage.addActor(shopPopup);
                     }

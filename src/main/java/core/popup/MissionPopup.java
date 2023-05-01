@@ -3,6 +3,7 @@ package core.popup;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
@@ -19,7 +20,7 @@ public class MissionPopup extends Table implements Screen {
     private final ScreenChanger screenChanger;
     private Mission mission;
 
-    public MissionPopup(MissionView missionView, Skin skin) {
+    public MissionPopup(MissionView missionView, Stage stage, Utils utils, Skin skin) {
         this.mainTable = new Table();
         this.innerTable = new Table();
         this.emptyTable = new Table();
@@ -81,7 +82,9 @@ public class MissionPopup extends Table implements Screen {
         closeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                missionView.closePopup();
+                var actors = stage.getActors();
+                actors.get(actors.size - 1).remove();
+                utils.disableAll(stage, false);
             }
         });
     }

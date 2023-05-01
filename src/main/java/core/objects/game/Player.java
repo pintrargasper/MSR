@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import core.GameData;
-import core.database.Utils;
+import core.Utils;
 import core.database.objects.Settings;
 import core.screens.GameScreen;
 import core.screens.helper.BodyHelper;

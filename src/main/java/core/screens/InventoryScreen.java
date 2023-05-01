@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import core.GameData;
+import core.Utils;
 import core.views.InventoryView;
 
 import java.util.ArrayList;

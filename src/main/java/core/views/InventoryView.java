@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Align;
 import core.Background;
 import core.GameData;
 import core.Language;
+import core.Utils;
 import core.objects.CustomSkin;
 import core.popup.InventoryPopup;
 
@@ -26,7 +27,8 @@ public class InventoryView {
     private final ScrollPane scrollPane;
     private final TextButton playerButton, bulletButton, cursorButton, aimButton, weaponButton, saveButton;
     private final NavigationBar navigationBar;
-    private InventoryPopup inventoryPopup;
+    private final Utils utils;
+    private final InventoryPopup inventoryPopup;
     private String player, bullet, cursor, aim, weapon;
     private final ArrayList<TextButton> playerButtonsList;
 
@@ -45,7 +47,8 @@ public class InventoryView {
         this.aimButton = new TextButton(Language.get("button_aim"), skin);
         this.weaponButton = new TextButton(Language.get("button_weapon"), skin);
         this.saveButton = new TextButton(Language.get("button_save_data"), skin);
-        this.inventoryPopup = new InventoryPopup(this, stage, skin);
+        this.utils = new Utils();
+        this.inventoryPopup = new InventoryPopup(this, stage, utils, skin);
         this.navigationBar = new NavigationBar();
         this.player = GameData.CURRENT_PLAYER_SKIN;
         this.bullet = GameData.CURRENT_BULLET_SKIN;
@@ -232,6 +235,7 @@ public class InventoryView {
                     }
                 }
                 inventoryPopup.setPopup(player, bullet, cursor, aim, weapon, activeSkinsList);
+                utils.disableAll(stage, true);
                 stage.addActor(inventoryPopup);
             }
         });

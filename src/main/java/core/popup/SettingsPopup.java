@@ -3,11 +3,14 @@ package core.popup;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import core.*;
 import core.database.SettingsConnection;
 import core.database.objects.Settings;
@@ -17,19 +20,24 @@ import java.util.ArrayList;
 
 public class SettingsPopup extends Table implements Screen {
 
+    private final Stage stage;
     private final Skin skin;
     private final Table mainTable, formTable;
     private final ScrollPane scrollPane;
     private final Label accountLabel, viewAccountLabel, signOutLabel, gameOptionsLabel, languageLabel, musicLabel, soundEffectLabel, keyboardControlsLabel, upLabel, leftLabel, rightLabel, shootLabel, pauseLabel, errorLabel;
     private final TextButton viewAccountButton, signOutButton, musicButton, soundEffectButton, upButton, leftButton, rightButton, shootButton, pauseButton, saveButton, closeButton;
+    private TextButton[] textButtons;
     private final SelectBox languageSelectBox;
     private final KeySelectionPopup keySelectionPopup;
     private final Settings settings;
     private final ScreenChanger screenChanger;
+    private final Utils utils;
 
-    public SettingsPopup(MenuView menuView, KeySelectionPopup keySelectionPopup, BasicPopup basicPopup, Stage stage, ScreenChanger screenChanger) {
+    public SettingsPopup(KeySelectionPopup keySelectionPopup, BasicPopup basicPopup, Stage stage, Utils utils, ScreenChanger screenChanger) {
+        this.stage = stage;
         this.keySelectionPopup = keySelectionPopup;
         this.screenChanger = screenChanger;
+        this.utils = new Utils();
         this.skin = new Skin(Gdx.files.internal(GameData.SKIN));
         this.mainTable = new Table();
         this.formTable = new Table();
@@ -62,13 +70,11 @@ public class SettingsPopup extends Table implements Screen {
         this.closeButton = new TextButton(Language.get("button_settings_close"), skin);
         this.languageSelectBox = new SelectBox<>(skin);
 
-        mainTable.setBackground(Background.setBackground(Background.strongRed));
-        formTable.setBackground(Background.setBackground(Background.white));
-
-        stage.setScrollFocus(scrollPane);
-
         errorLabel.setAlignment(Align.center);
         languageSelectBox.setAlignment(Align.center);
+
+        mainTable.setBackground(Background.setBackground(Background.strongRed));
+        formTable.setBackground(Background.setBackground(Background.white));
 
         languageSelectBox.setItems(GameData.LANGUAGES);
         languageSelectBox.setSelected(settings.getLanguage());
@@ -157,6 +163,7 @@ public class SettingsPopup extends Table implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 keySelectionPopup.setPopup(upLabel.getText().toString(), upButton.getText().toString(), upButton);
+                utils.disableAll(stage, true);
                 stage.addActor(keySelectionPopup);
             }
         });
@@ -165,6 +172,7 @@ public class SettingsPopup extends Table implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 keySelectionPopup.setPopup(leftLabel.getText().toString(), leftButton.getText().toString(), leftButton);
+                utils.disableAll(stage, true);
                 stage.addActor(keySelectionPopup);
             }
         });
@@ -173,6 +181,7 @@ public class SettingsPopup extends Table implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 keySelectionPopup.setPopup(rightLabel.getText().toString(), rightButton.getText().toString(), rightButton);
+                utils.disableAll(stage, true);
                 stage.addActor(keySelectionPopup);
             }
         });
@@ -181,6 +190,7 @@ public class SettingsPopup extends Table implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 keySelectionPopup.setPopup(shootLabel.getText().toString(), shootButton.getText().toString(), shootButton);
+                utils.disableAll(stage, true);
                 stage.addActor(keySelectionPopup);
             }
         });
@@ -189,6 +199,7 @@ public class SettingsPopup extends Table implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 keySelectionPopup.setPopup(pauseLabel.getText().toString(), pauseButton.getText().toString(), pauseButton);
+                utils.disableAll(stage, true);
                 stage.addActor(keySelectionPopup);
             }
         });
@@ -247,6 +258,7 @@ public class SettingsPopup extends Table implements Screen {
                     error = Language.get("string_settings_something_wrong");
                 }
 
+                utils.disableAll(stage, true);
                 basicPopup.setPopup(error);
                 stage.addActor(basicPopup);
             }
@@ -255,7 +267,10 @@ public class SettingsPopup extends Table implements Screen {
         closeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                menuView.closeSettingsOrKeySelectionPopup();
+                var actors = stage.getActors();
+                utils.disableAll(stage, false);
+                setButtons(false, textButtons);
+                actors.get(actors.size - 1).remove();
             }
         });
     }
@@ -295,8 +310,15 @@ public class SettingsPopup extends Table implements Screen {
 
     }
 
-    public void setPopup() {
+    public void setPopup(TextButton... textButtons) {
+        this.textButtons = textButtons;
+        setButtons(true, textButtons);
+    }
 
+    private void setButtons(boolean active, TextButton... textButtons) {
+        for (TextButton textButton : textButtons) {
+            textButton.setTouchable(active ? Touchable.disabled : Touchable.enabled);
+        }
     }
 
     private int getKeyCode(String buttonName) {

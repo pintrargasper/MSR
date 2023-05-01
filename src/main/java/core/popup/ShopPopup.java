@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Align;
 import core.Background;
 import core.GameData;
 import core.Language;
+import core.Utils;
 import core.database.MissionConnection;
 import core.database.SkinConnection;
 import core.objects.CustomSkin;
@@ -29,7 +30,7 @@ public class ShopPopup extends Table implements Screen {
     private CustomSkin customSkin;
     private String type;
 
-    public ShopPopup(BasicPopup basicPopup, Stage stage, Skin skin) {
+    public ShopPopup(BasicPopup basicPopup, Stage stage, Utils utils, Skin skin) {
         this.stage = stage;
         this.basicPopup = basicPopup;
         this.mainTable = new Table();
@@ -85,9 +86,11 @@ public class ShopPopup extends Table implements Screen {
                     } else if (result.matches("0")) {
                         closePopup();
                         openBasicPopup(Language.get("string_not_enough_money"));
+                        return;
                     } else {
                         closePopup();
                         openBasicPopup(Language.get("string_shop_something_wrong"));
+                        return;
                     }
                 } else {
                     var result = SkinConnection.buySkin(customSkin.getId());
@@ -101,13 +104,16 @@ public class ShopPopup extends Table implements Screen {
                     }  else if (result.matches("0")) {
                         closePopup();
                         openBasicPopup(Language.get("string_not_enough_money"));
+                        return;
                     } else {
                         closePopup();
                         openBasicPopup(Language.get("string_shop_something_wrong"));
+                        return;
                     }
                 }
                 NavigationBar.updateMoney();
                 openButton.setText(Language.get("button_buy_purchased"));
+                utils.disableAll(stage, false);
                 closePopup();
             }
         });
@@ -115,6 +121,7 @@ public class ShopPopup extends Table implements Screen {
         closeButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                utils.disableAll(stage, false);
                 closePopup();
             }
         });
