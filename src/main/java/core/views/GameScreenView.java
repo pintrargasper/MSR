@@ -28,7 +28,7 @@ public class GameScreenView {
     private final GameOverPopup gameOverPopup;
     private final Account account;
 
-    public GameScreenView(GameScreen gameScreen, Stage stage) {
+    public GameScreenView(GameScreen gameScreen, Stage stage, Mission mission) {
         this.gameScreen = gameScreen;
         this.stage = stage;
         this.skin = new Skin(Gdx.files.internal(GameData.SKIN));
@@ -36,7 +36,7 @@ public class GameScreenView {
         this.emptyTable = new Table();
         this.navigationBar = new NavigationBar();
         this.pausePopup = new PausePopup(this, skin);
-        this.gameFinnishPopup = new GameFinnishPopup(this, skin);
+        this.gameFinnishPopup = new GameFinnishPopup(this, skin, mission);
         this.gameOverPopup = new GameOverPopup(this, skin);
         this.account = GameData.PLAYER_ACCOUNT;
     }
@@ -76,7 +76,7 @@ public class GameScreenView {
 
         account.setMoney(account.getMoney() + update.getTotalMoney());
 
-        gameFinnishPopup.setPopup(Money.format(update.getEarnedMoney()), Money.format(update.getHostageKilledMoney()), Money.format(update.getEnemyKilledMoney()), Money.format(update.getAmmoCosts()), update.getUsedTime(), Money.format(update.getTotalMoney()));
+        gameFinnishPopup.setPopup(Money.format(update.getEarnedMoney()), Money.format(update.getHostageKilledMoney()), Money.format(update.getEnemyKilledMoney()), Money.format(update.getAmmoCosts()), update.getUsedTime(), Money.format(update.getTotalMoney()), update.getTotalMoney());
         stage.addActor(gameFinnishPopup);
     }
 

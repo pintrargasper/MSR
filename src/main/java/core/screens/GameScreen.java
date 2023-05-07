@@ -74,7 +74,7 @@ public class GameScreen extends ScreenAdapter {
         this.tiledMapHelper = new TiledMapHelper(this, world, orthographicCamera);
         this.orthogonalTiledMapRenderer = tiledMapHelper.setupMap(mission.getMap());
         this.detectionSystem = new DetectionSystem();
-        this.gameScreenView = new GameScreenView(this, stage);
+        this.gameScreenView = new GameScreenView(this, stage, mission);
         this.durationTimer = new DurationTimer(gameScreenView.getNavigationBar());
         this.settings = GameData.SETTINGS;
         this.utils = new Utils();
