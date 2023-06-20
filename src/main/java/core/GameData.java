@@ -54,8 +54,7 @@ public class GameData {
     //Game
     public static int PLAYER_LIVES;
     public static int PLAYER_FIRED_BULLETS;
-    public static int WEAPON_BULLETS = 2;
-    public static float WEAPON_SPEED = 0.30f;
+    public static float WEAPON_SPEED = 0f;
     public static int ENEMY_COUNT;
     public static int ENEMY_KILLED_COUNT;
     public static int ENEMY_FINAL_COUNT;
@@ -63,4 +62,5 @@ public class GameData {
     public static int HOSTAGE_KILLED_COUNT;
     public static int VIP_COUNT;
     public static int VIP_KILLED_COUNT;
+    public static int WEAPON_KILLS = 0;
 }

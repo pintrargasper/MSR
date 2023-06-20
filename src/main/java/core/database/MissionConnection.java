@@ -33,6 +33,8 @@ public class MissionConnection {
                 .add("playerFiredBullets", String.valueOf(playerFiredBullets))
                 .add("enemyKilled", String.valueOf(enemyKilled))
                 .add("hostageKilled", String.valueOf(hostageKilled))
+                .add("weaponSkin", GameData.CURRENT_WEAPON_SKIN)
+                .add("weaponKills", String.valueOf(GameData.WEAPON_KILLS))
                 .add("usedTime", usedTime)
                 .build();
         String response;
@@ -61,6 +63,8 @@ public class MissionConnection {
         RequestBody formBody = new FormBody.Builder()
                 .add("idUser", String.valueOf(GameData.PLAYER_ACCOUNT.getId()))
                 .add("money", String.valueOf(money))
+                .add("weaponSkin", GameData.CURRENT_WEAPON_SKIN)
+                .add("weaponKills", String.valueOf(GameData.WEAPON_KILLS))
                 .build();
         String response;
         try {

@@ -1,6 +1,8 @@
 package core;
 
-public class Boot extends com.badlogic.gdx.Game {
+import com.badlogic.gdx.Game;
+
+public class Boot extends Game {
 
 	private ScreenChanger screenChanger;
 

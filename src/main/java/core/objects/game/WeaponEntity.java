@@ -9,15 +9,13 @@ public abstract class WeaponEntity {
 
     protected float x, y, velX, velY, speed;
     protected float width, height, rotation;
-    protected int bullets;
     protected boolean show;
     protected Long startTime;
     protected Body body;
 
-    public WeaponEntity(float width, float height, int bullets, float speed, Body body) {
+    public WeaponEntity(float width, float height, float speed, Body body) {
         this.width = width;
         this.height = height;
-        this.bullets = bullets;
         this.startTime = TimeUtils.nanoTime();
         this.body = body;
         this.velX = 0;
@@ -43,11 +41,6 @@ public abstract class WeaponEntity {
     public void setRotation(float rotation) {
         this.rotation = rotation;
     }
-
-    public int getBullets() {
-        return bullets;
-    }
-
     public float getSpeed() {
         return speed;
     }

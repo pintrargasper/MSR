@@ -61,25 +61,34 @@ public class Collisions {
 
         if (fixtureA.getBody().getUserData() != null && fixtureB.getBody().getUserData() != null) {
             switch (fixtureA.getBody().getUserData().toString() + fixtureB.getBody().getUserData().toString()) {
-                case "EnemyPlayerBullet", "PlayerBulletEnemy", "EnemyBulletEnemy",
-                        "EnemyEnemyBullet", "HostagePlayer", "PlayerHostage", "VipPlayer", "PlayerVip", "EnemyBulletPlayerBullet", "PlayerBulletEnemyBullet" -> {
-                    bodiesList.add(fixtureA.getBody());
-                    bodiesList.add(fixtureB.getBody());
+                case "EnemyBulletEnemy", "EnemyEnemyBullet", "HostagePlayer", "PlayerHostage", "VipPlayer", "PlayerVip", "EnemyBulletPlayerBullet", "PlayerBulletEnemyBullet" -> {
+                    addFixture(fixtureA, fixtureB);
+                }
+                case "EnemyPlayerBullet", "PlayerBulletEnemy"  -> {
+                    addFixture(fixtureA, fixtureB);
+                    GameData.WEAPON_KILLS++;
                 }
                 case "EnemyBulletPlayer", "PlayerEnemyBullet" -> {
-                    bodiesList.add(fixtureA.getBody());
-                    bodiesList.add(fixtureB.getBody());
+                    addFixture(fixtureA, fixtureB);
                     navigationBar.playerLives();
                 }
-                case "HostagePlayerBullet", "PlayerBulletHostage", "HostageEnemyBullet", "EnemyBulletHostage" -> {
-                    bodiesList.add(fixtureA.getBody());
-                    bodiesList.add(fixtureB.getBody());
+                case "HostagePlayerBullet", "PlayerBulletHostage" -> {
+                    addFixture(fixtureA, fixtureB);
+                    GameData.HOSTAGE_KILLED_COUNT++;
+                    GameData.WEAPON_KILLS++;
+                }
+                case "HostageEnemyBullet", "EnemyBulletHostage" -> {
+                    addFixture(fixtureA, fixtureB);
                     GameData.HOSTAGE_KILLED_COUNT++;
                 }
-                case "VipPlayerBullet", "PlayerBulletVip", "VipEnemyBullet", "EnemyBulletVip" -> {
-                    bodiesList.add(fixtureA.getBody());
-                    bodiesList.add(fixtureB.getBody());
+                case "VipEnemyBullet", "EnemyBulletVip" -> {
+                    addFixture(fixtureA, fixtureB);
                     GameData.VIP_KILLED_COUNT++;
+                }
+                case "VipPlayerBullet", "PlayerBulletVip" -> {
+                    addFixture(fixtureA, fixtureB);
+                    GameData.VIP_KILLED_COUNT++;
+                    GameData.WEAPON_KILLS++;
                 }
                 default -> {
 
@@ -167,5 +176,10 @@ public class Collisions {
         gameScreen.enemyList.removeAll(gameScreen.removeEnemyList);
         gameScreen.hostageList.removeAll(gameScreen.removeHostageList);
         gameScreen.vipList.removeAll(gameScreen.removeVipList);
+    }
+
+    private void addFixture(Fixture fixtureA, Fixture fixtureB) {
+        bodiesList.add(fixtureA.getBody());
+        bodiesList.add(fixtureB.getBody());
     }
 }

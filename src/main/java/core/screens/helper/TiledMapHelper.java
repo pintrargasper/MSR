@@ -20,16 +20,14 @@ public class TiledMapHelper {
     private final GameScreen gameScreen;
     private final World world;
     private final OrthographicCamera orthographicCamera;
+    private final BodyHelper bodyHelper;
     private TiledMap tiledMap;
-    private BodyHelper bodyHelper;
-    private final int numberOfBullets;
 
     public TiledMapHelper(GameScreen gameScreen, World world, OrthographicCamera orthographicCamera) {
         this.gameScreen = gameScreen;
         this.world = world;
         this.orthographicCamera = orthographicCamera;
         this.bodyHelper = new BodyHelper(world);
-        this.numberOfBullets = GameData.WEAPON_BULLETS;
     }
 
     public OrthogonalTiledMapRenderer setupMap(String mission) {
@@ -44,6 +42,7 @@ public class TiledMapHelper {
         GameData.HOSTAGE_KILLED_COUNT = 0;
         GameData.VIP_COUNT = 0;
         GameData.VIP_KILLED_COUNT = 0;
+        GameData.WEAPON_KILLS = 0;
 
         MapObjects objects = tiledMap.getLayers().get("Objects").getObjects();
         parseMapObject(objects);
@@ -70,7 +69,7 @@ public class TiledMapHelper {
                     Body weaponBody = bodyHelper.createObjectBody(20, 7, playerBody.getPosition().x * GameData.PPM, playerBody.getPosition().y * GameData.PPM, "Player");
                     weaponBody.setUserData("Weapon");
 
-                    Weapon weapon = new Weapon(20 * 1.5f, 7 * 1.5f, numberOfBullets, weaponBody, GameData.WEAPON_SPEED, GameData.CURRENT_WEAPON_SKIN);
+                    Weapon weapon = new Weapon(20 * 1.5f, 7 * 1.5f, weaponBody, GameData.WEAPON_SPEED, GameData.CURRENT_WEAPON_SKIN);
                     gameScreen.setPlayer(new Player((data.getWidth() * 1.5f), (data.getHeight() * 1.5f), playerBody, gameScreen, world, orthographicCamera, weapon));
                 } else if (mapObject.getName() != null && mapObject.getName().equals("Enemy")) {
 
@@ -82,7 +81,7 @@ public class TiledMapHelper {
                     Body weaponBody = bodyHelper.createObjectBody(20, 7, enemyBody.getPosition().x * GameData.PPM, enemyBody.getPosition().y * GameData.PPM, "Enemy");
                     weaponBody.setUserData("Weapon");
 
-                    Weapon weapon = new Weapon(20 * 1.5f, 7 * 1.5f, numberOfBullets, weaponBody, GameData.WEAPON_SPEED, GameData.CURRENT_ENEMY_WEAPON_SKIN);
+                    Weapon weapon = new Weapon(20 * 1.5f, 7 * 1.5f, weaponBody, GameData.WEAPON_SPEED, GameData.CURRENT_ENEMY_WEAPON_SKIN);
                     gameScreen.enemyList.add(new Enemy(data.getWidth() * 1.5f, data.getHeight() * 1.5f, enemyBody, gameScreen, orthographicCamera, bodyHelper, weapon));
                     GameData.ENEMY_COUNT += 1;
                 } else if (mapObject.getName() != null && mapObject.getName().equals("Hostage")) {

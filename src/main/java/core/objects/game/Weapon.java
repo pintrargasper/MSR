@@ -11,8 +11,8 @@ public class Weapon extends WeaponEntity {
     private Sprite sprite;
     private final Sprite leftSprite, rightSprite;
 
-    public Weapon(float width, float height, int bullets, Body body, float speed, String type) {
-        super(width, height, bullets, speed, body);
+    public Weapon(float width, float height, Body body, float speed, String type) {
+        super(width, height, speed, body);
         this.leftSprite = new Sprite(new Texture("pictures/skins/weapon/" + type + "/weapon-" + type + "-left.png"));
         this.rightSprite = new Sprite(new Texture("pictures/skins/weapon/" + type + "/weapon-" + type + "-right.png"));
         this.sprite = rightSprite;
