@@ -105,9 +105,7 @@ public class MissionView {
             }
             missionImage.setAlign(Align.center);
 
-            //Current Skin
-
-            imageTable.add(missionImage).width(100).height(100);
+            imageTable.add(missionImage).width(220).height(100);
 
             productTable.setBackground(Background.setBackground(Background.white));
             productTable.add(missionNameLabel).pad(10, 10, 10, 10).growX();
@@ -135,7 +133,6 @@ public class MissionView {
         if (listSize == 0) {
             scrollPaneTable.add(new Table()).pad(0, 10, 10, 10).width(250).growY().fill();
             scrollPaneTable.row();
-            //scrollPaneTable.add(noNewMissionsLabel).growX().growY();
         }
 
         return skinsScrollPane;

@@ -13,13 +13,16 @@ import core.Background;
 import core.GameData;
 import core.Language;
 import core.ScreenChanger;
+import core.database.objects.MissionBestScore;
 import core.objects.Mission;
 import core.views.GameScreenView;
+
+import java.util.Objects;
 
 public class GameFinnishPopup extends Table implements Screen {
 
     private final Table mainTable, innerTable, emptyTable;
-    private final Label titleLabel, earnedMoneyLabel, noHostageKilledLabel, enemyKilledMoneyLabel, ammoCostsLabel, timeLabel, totalEarnedMoneyLabel;
+    private final Label titleLabel, earnedMoneyLabel, noHostageKilledLabel, enemyKilledMoneyLabel, ammoCostsLabel, timeLabel, bonusPenaltyLabel, totalEarnedMoneyLabel;
     private final TextButton missionsButton;
     private final GameScreenView gameScreenView;
     private final ScreenChanger screenChanger;
@@ -35,6 +38,7 @@ public class GameFinnishPopup extends Table implements Screen {
         this.enemyKilledMoneyLabel = new Label("", skin);
         this.ammoCostsLabel = new Label("", skin);
         this.timeLabel = new Label("", skin);
+        this.bonusPenaltyLabel = new Label("", skin);
         this.totalEarnedMoneyLabel = new Label("", skin);
         this.missionsButton = new TextButton(Language.get("button_game_finnish_missions"), skin);
         this.gameScreenView = gameScreenView;
@@ -59,6 +63,8 @@ public class GameFinnishPopup extends Table implements Screen {
         innerTable.add(ammoCostsLabel).pad(0, 10, 5, 10).growX();
         innerTable.row();
         innerTable.add(timeLabel).pad(0, 10, 5, 10).growX();
+        innerTable.row();
+        innerTable.add(bonusPenaltyLabel).pad(0, 10, 5, 10).growX();
         innerTable.row();
         innerTable.add(totalEarnedMoneyLabel).pad(0, 10, 5, 10).growX();
         innerTable.row();
@@ -115,15 +121,17 @@ public class GameFinnishPopup extends Table implements Screen {
 
     }
 
-    public void setPopup(String earnedMoney, String noHostagesKilled, String enemyKilledMoney, String ammoCosts, String usedTime, String totalEarnedMoney, int money) {
+    public void setPopup(String earnedMoney, String noHostagesKilled, String enemyKilledMoney, String ammoCosts, String usedTime, int bonusPenalty, String totalEarnedMoney, int money) {
         earnedMoneyLabel.setText(Language.get("label_earned_money") + ": " + earnedMoney);
         noHostageKilledLabel.setText(Language.get("label_no_hostage_killed") + ": " + noHostagesKilled);
         enemyKilledMoneyLabel.setText(Language.get("label_enemy_killed") + ": " + enemyKilledMoney);
         ammoCostsLabel.setText(Language.get("label_ammo_costs") + ": " + ammoCosts);
         timeLabel.setText(Language.get("label_used_time") + ": " + usedTime);
+        bonusPenaltyLabel.setText((bonusPenalty >= 0 ? Language.get("label_bonus") : Language.get("label_penalty")) + " : " + Math.abs(bonusPenalty));
         totalEarnedMoneyLabel.setText(Language.get("label_total_earned_money") + ": " + totalEarnedMoney);
 
-        var mission = GameData.MISSIONS_BEST_SCORE.stream().filter(e -> e.getId() == this.mission.getId()).findFirst().get();
+        var mission = GameData.MISSIONS_BEST_SCORE.stream().filter(e -> Objects.equals(e.getId(), this.mission.getId())).findFirst().get();
         mission.setScore(Math.max(mission.getScore(), money));
+        mission.setUsername(GameData.PLAYER_ACCOUNT.getUsername());
     }
 }

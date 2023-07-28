@@ -8,6 +8,7 @@ import core.GameData;
 import core.Money;
 import core.MusicPlayer;
 import core.database.MissionConnection;
+import core.database.objects.Update;
 import core.objects.Account;
 import core.objects.Mission;
 import core.popup.GameFinnishPopup;
@@ -66,7 +67,7 @@ public class GameScreenView {
 
         var enemyKilled = (GameData.ENEMY_FINAL_COUNT - GameData.ENEMY_KILLED_COUNT);
 
-        var update = MissionConnection.insertMissionData(mission.getId(), GameData.PLAYER_FIRED_BULLETS, enemyKilled, GameData.HOSTAGE_KILLED_COUNT, durationTimer.getTime());
+        Update update = MissionConnection.insertMissionData(mission.getId(), GameData.PLAYER_FIRED_BULLETS, enemyKilled, GameData.HOSTAGE_KILLED_COUNT, durationTimer.getTime());
 
         var maxScore = Math.max(mission.getMaxScore(), update.getTotalMoney());
 
@@ -76,7 +77,7 @@ public class GameScreenView {
 
         account.setMoney(account.getMoney() + update.getTotalMoney());
 
-        gameFinnishPopup.setPopup(Money.format(update.getEarnedMoney()), Money.format(update.getHostageKilledMoney()), Money.format(update.getEnemyKilledMoney()), Money.format(update.getAmmoCosts()), update.getUsedTime(), Money.format(update.getTotalMoney()), update.getTotalMoney());
+        gameFinnishPopup.setPopup(Money.format(update.getEarnedMoney()), Money.format(update.getHostageKilledMoney()), Money.format(update.getEnemyKilledMoney()), Money.format(update.getAmmoCosts()), update.getUsedTime(), update.getBonusPenalty(), Money.format(update.getTotalMoney()), update.getTotalMoney());
         stage.addActor(gameFinnishPopup);
     }
 

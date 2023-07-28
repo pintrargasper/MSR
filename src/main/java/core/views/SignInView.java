@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Timer;
 import core.*;
 import core.database.AccountConnection;
 import core.database.MissionConnection;
@@ -65,6 +66,7 @@ public class SignInView {
         stage.setScrollFocus(scrollPaneTable);
 
         int index = 0;
+
         for (LeaderBoard user : leaderBoard) {
             if (index++ % 3 == 0) {
                 scrollPaneTable.row();
@@ -129,51 +131,48 @@ public class SignInView {
         signInButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                /*if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty()) {
-                    errorLabel.setText("Fields can not be empty");
-                } else {
-                    screenChanger.changeScreen(1);
-                }*/
 
                 errorLabel.setText("Loading...");
 
-                if (errorLabel.getText().toString().matches("Loading...")) {
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        try {
+                            Account account = new Account();
+                            account.setId(35L);
+                            GameData.PLAYER_ACCOUNT = account;
 
-                    try {
-                        Account account = new Account();
-                        account.setId(32L);
-                        GameData.PLAYER_ACCOUNT = account;
+                            account = AccountConnection.getAccountDetails();
+                            GameData.PLAYER_ACCOUNT = account;
 
-                        account = AccountConnection.getAccountDetails();
-                        GameData.PLAYER_ACCOUNT = account;
+                            GameData.MISSIONS_LIST = MissionConnection.getMissions();
+                            GameData.MISSIONS_BEST_SCORE = MissionConnection.getBestScorePerMission();
+                            GameData.SETTINGS = SettingsConnection.getSettings();
+                            GameData.SKINS_LIST = SkinConnection.getAvailableSkins();
+                            GameData.OWNED_SKINS_LIST = SkinConnection.getOwnedSkins();
 
-                        GameData.MISSIONS_LIST = MissionConnection.getMissions();
-                        GameData.MISSIONS_BEST_SCORE = MissionConnection.getBestScorePerMission();
-                        GameData.SETTINGS = SettingsConnection.getSettings();
-                        GameData.SKINS_LIST = SkinConnection.getAvailableSkins();
-                        GameData.OWNED_SKINS_LIST = SkinConnection.getOwnedSkins();
+                            String[] skins = SkinConnection.getActiveSkins().split(",");
+                            GameData.CURRENT_PLAYER_SKIN = skins[0];
+                            GameData.CURRENT_BULLET_SKIN = skins[1];
+                            GameData.CURRENT_CURSOR_SKIN = skins[2];
+                            GameData.CURRENT_AIM_SKIN = skins[3];
+                            GameData.CURRENT_WEAPON_SKIN = skins[4];
 
-                        String[] skins = SkinConnection.getActiveSkins().split(",");
-                        GameData.CURRENT_PLAYER_SKIN = skins[0];
-                        GameData.CURRENT_BULLET_SKIN = skins[1];
-                        GameData.CURRENT_CURSOR_SKIN = skins[2];
-                        GameData.CURRENT_AIM_SKIN = skins[3];
-                        GameData.CURRENT_WEAPON_SKIN = skins[4];
+                            var weapon = GameData.OWNED_SKINS_LIST.stream().filter(e -> e.getPicture().contains("weapon-" + GameData.CURRENT_WEAPON_SKIN)).findFirst().get();
+                            GameData.WEAPON_SPEED = weapon.getSpeed();
 
-                        var weapon = GameData.OWNED_SKINS_LIST.stream().filter(e -> e.getPicture().contains("weapon-" + GameData.CURRENT_WEAPON_SKIN)).findFirst().get();
-                        GameData.WEAPON_SPEED = weapon.getSpeed();
+                            MusicPlayer.setMusic(GameData.BASIC_MUSIC);
+                            if (GameData.SETTINGS.getMusic() == 1) {
+                                MusicPlayer.play();
+                            }
 
-                        MusicPlayer.setMusic(GameData.BASIC_MUSIC);
-                        if (GameData.SETTINGS.getMusic() == 1) {
-                            MusicPlayer.play();
+                            Language.setLanguage(GameData.SETTINGS.getLanguage());
+                            screenChanger.changeScreen(1);
+                        } catch (Exception e) {
+                            errorLabel.setText("Could not connect to the server");
                         }
-
-                        Language.setLanguage(GameData.SETTINGS.getLanguage());
-                        screenChanger.changeScreen(1);
-                    } catch (Exception e) {
-                        errorLabel.setText("Could not connect to the server");
                     }
-                }
+                }, 3);
             }
         });
 

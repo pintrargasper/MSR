@@ -26,6 +26,10 @@ public class MissionBestScore {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public int getScore() {
         return score;
     }

@@ -123,7 +123,7 @@ atlasData: {
 			hidden: false
 		}
 		{
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/components/scrool-pane-vscroll-knob.png
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/components/scrool-pane-vscroll-knob.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -163,7 +163,7 @@ atlasData: {
 			hidden: false
 		}
 		{
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/components/slider-knob.png
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/components/slider-knob.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -203,7 +203,7 @@ atlasData: {
 			hidden: false
 		}
 		{
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/components/CheckBoxOff.png
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/components/CheckBoxOff.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -223,7 +223,7 @@ atlasData: {
 			hidden: false
 		}
 		{
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/components/CheckBoxOn.png
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/components/CheckBoxOn.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -325,7 +325,7 @@ atlasData: {
 	]
 	fontDrawables: [
 		{
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Big-font.png
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Big-font.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -345,7 +345,7 @@ atlasData: {
 			hidden: false
 		}
 		{
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Medium-font.png
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Medium-font.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -365,7 +365,7 @@ atlasData: {
 			hidden: false
 		}
 		{
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Basic-font.png
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Basic-font.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -453,17 +453,17 @@ jsonData: {
 		{
 			class: com.ray3k.skincomposer.data.FontData
 			name: Basic-font
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Basic-font.fnt
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Basic-font.fnt
 		}
 		{
 			class: com.ray3k.skincomposer.data.FontData
 			name: Big-font
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Big-font.fnt
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Big-font.fnt
 		}
 		{
 			class: com.ray3k.skincomposer.data.FontData
 			name: Medium-font
-			file: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Medium-font.fnt
+			file: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/font/Medium-font.fnt
 		}
 	]
 	freeTypeFonts: []
@@ -2132,7 +2132,7 @@ preferences: {
 		value: 30
 	}
 }
-saveFile: C:/Users/gaspe/Desktop/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/my-skin.scmp
+saveFile: C:/Users/gaspe rpintar/OneDrive/Namizje/Projekt-Igra/MemoStickRescue/src/main/resources/game-skins/my-skin.scmp
 version: 52
 sceneComposer: {
 	children: []

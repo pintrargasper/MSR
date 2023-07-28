@@ -4,34 +4,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import core.GameData;
-import core.Language;
-import core.MusicPlayer;
-import core.ScreenChanger;
-import core.database.AccountConnection;
-import core.objects.LeaderBoard;
-import core.views.SignInView;
+import core.views.MenuView;
+import core.views.NoConnectionView;
 
-import java.util.ArrayList;
-
-public class SignInScreen extends ScreenAdapter {
+public class NoConnectionScreen extends ScreenAdapter {
 
     private final Stage stage;
-    private final SignInView signInView;
-    private final ScreenChanger screenChanger;
+    private final NoConnectionView noConnectionView;
 
-    public SignInScreen(ArrayList<LeaderBoard> leaderBoard) {
+    public NoConnectionScreen() {
         this.stage = new Stage(new FitViewport(GameData.GAME_WIDTH, GameData.GAME_HEIGHT));
-        this.signInView = new SignInView();
-        this.screenChanger = new ScreenChanger(GameData.INSTANCE);
+        this.noConnectionView = new NoConnectionView(stage);
 
-        if (MusicPlayer.getMusic() != null) {
-            MusicPlayer.stop();
-        }
-
-        stage.addActor(signInView.getView(stage, leaderBoard));
+        stage.addActor(noConnectionView.getView());
         Gdx.input.setInputProcessor(stage);
     }
 

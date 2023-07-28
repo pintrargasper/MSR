@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import core.*;
+import core.database.AccountConnection;
 import core.database.SettingsConnection;
 import core.database.objects.Settings;
 import core.views.MenuView;
@@ -133,7 +134,12 @@ public class SettingsPopup extends Table implements Screen {
         signOutButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                screenChanger.changeScreen(0);
+                var leaderBoard = AccountConnection.getLeaderBoard();
+                if (leaderBoard == null) {
+                    screenChanger.changeScreen(6);
+                } else {
+                    screenChanger.changeScreen(0, leaderBoard);
+                }
             }
         });
 

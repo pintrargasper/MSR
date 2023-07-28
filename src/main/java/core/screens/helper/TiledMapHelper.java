@@ -96,7 +96,7 @@ public class TiledMapHelper {
 
                     var data = objectData(mapObject);
 
-                    Body body = bodyHelper.createObjectBody(data.getWidth(), data.getHeight(), data.getPosX(), data.getPosY(), "Hostage");
+                    Body body = bodyHelper.createObjectBody(data.getWidth(), data.getHeight(), data.getPosX(), data.getPosY(), "Vip");
                     body.setUserData("Vip");
                     gameScreen.vipList.add(new Vip(data.getWidth() * 1.5f, data.getHeight() * 1.5f, body));
                     GameData.VIP_COUNT += 1;

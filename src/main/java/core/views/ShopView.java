@@ -107,7 +107,7 @@ public class ShopView {
 
             //Current Skin
 
-            imageTable.add(missionImage).width(100).height(100);
+            imageTable.add(missionImage).width(220).height(100);
 
             productTable.setBackground(Background.setBackground(Background.white));
             productTable.add(missionNameLabel).pad(10, 10, 10, 10).growX();
