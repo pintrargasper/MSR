@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="left-down" width="60" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="208">
+ <tileset firstgid="1" name="player-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+  <image source="../pictures/skins/player/1/player-1-stand.png" width="14" height="34"/>
+ </tileset>
+ <tileset firstgid="2" name="enemy-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+  <image source="../pictures/skins/enemy/1/enemy-1-stand.png" width="14" height="34"/>
+ </tileset>
+ <tileset firstgid="3" name="hostage-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+  <image source="../pictures/skins/hostage/1/hostage-1-stand.png" trans="ff00ff" width="14" height="34"/>
+ </tileset>
+ <tileset firstgid="4" name="vip-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+  <image source="../pictures/skins/vip/1/vip-1-stand.png" trans="ff00ff" width="14" height="34"/>
+ </tileset>
+ <tileset firstgid="5" name="grass" tilewidth="70" tileheight="70" tilecount="49" columns="7">
+  <image source="../tiles/grass.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="54" name="industrial" tilewidth="70" tileheight="70" tilecount="112" columns="14">
+  <image source="../tiles/industrial.png" trans="ff00ff" width="980" height="560"/>
+ </tileset>
+ <layer id="1" name="Map" width="60" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt00EKACEIheHWHaLF3KDuf7hoIQwSNJpuhv8Dd1o9pFIAAH8wHP1NVaTo897W27uxvwbcqzNlZlxkp56sz8W9p5wZua07lZmbrJn7039Ll7z71Lebsc5Jeee+FAAAQLYJMjcKwA==
+  </data>
+ </layer>
+ <objectgroup id="2" name="Objects">
+  <object id="174" name="Hostage" gid="3" x="865" y="693" width="70" height="70"/>
+  <object id="175" name="Instructions 1" x="260" y="500" width="270" height="120">
+   <properties>
+    <property name="Instructions">W - Jump
+A - Back
+D - Forward
+Primary mouse click - Shot</property>
+   </properties>
+   <text fontfamily="Segoe UI" pixelsize="21" wrap="1" bold="1" valign="center">W - Jump
+A - Back
+D - Forward
+Primary mouse click - Shot</text>
+  </object>
+  <object id="176" name="Player" gid="1" x="100" y="700" width="70" height="70"/>
+  <object id="178" name="Instructions 2" x="940" y="450" width="270" height="120">
+   <properties>
+    <property name="Instructions">Rescue the hostage 
+by touching him</property>
+   </properties>
+   <text fontfamily="Segoe UI" pixelsize="21" wrap="1" bold="1" halign="center" valign="center">Rescue the hostage 
+by touching him</text>
+  </object>
+  <object id="179" x="0" y="770">
+   <polygon points="0,0 0,-70 4200,-70 4200,0"/>
+  </object>
+  <object id="180" x="560" y="700">
+   <polygon points="0,0 140,-140 140,0"/>
+  </object>
+  <object id="181" x="770" y="630">
+   <polygon points="0,0 70,0 70,-70 0,-70"/>
+  </object>
+  <object id="182" x="770" y="560">
+   <polygon points="0,0 140,0 140,-140"/>
+  </object>
+  <object id="184" name="Instructions 3" x="1750" y="230" width="270" height="140">
+   <properties>
+    <property name="Instructions">W - Jump
+A - Back
+D - Forward
+Primary mouse click - Shot</property>
+   </properties>
+   <text fontfamily="Segoe UI" pixelsize="21" wrap="1" bold="1" valign="center">Be careful!
+There is no turning back from this point.
+Check if you have rescued all the hostages.</text>
+  </object>
+  <object id="185" name="Enemy" gid="2" x="1820" y="700" width="70" height="70"/>
+  <object id="186" name="Vip" gid="4" x="3180" y="700" width="70" height="70"/>
+  <object id="187" name="Enemy" gid="2" x="2910" y="700" width="70" height="70"/>
+  <object id="188" name="Enemy" gid="2" x="3461.97" y="700" width="70" height="70"/>
+  <object id="190" name="Instructions 4" x="2920" y="270" width="270" height="140">
+   <properties>
+    <property name="Instructions">Be careful! f
+We must protect VIPs at all costs.
+If the VIP dies, your mission fails</property>
+   </properties>
+   <text fontfamily="Segoe UI" pixelsize="21" wrap="1" bold="1" valign="center">Be careful! f
+We must protect VIPs at all costs.
+If the VIP dies, your mission fails</text>
+  </object>
+  <object id="191" x="2590" y="630">
+   <polygon points="0,0 70,0 70,70 0,70"/>
+  </object>
+  <object id="192" x="2730" y="630">
+   <polygon points="0,0 0,-70 70,-70 70,0"/>
+  </object>
+  <object id="193" x="2870" y="560">
+   <polygon points="0,0 70,0 70,-70 0,-70"/>
+  </object>
+  <object id="194" x="3010" y="560">
+   <polygon points="0,0 70,0 70,70 0,70"/>
+  </object>
+  <object id="195" x="3150" y="560">
+   <polygon points="0,0 70,0 70,-70 0,-70"/>
+  </object>
+  <object id="196" x="3290" y="630">
+   <polygon points="0,0 0,-70 70,-70 70,0"/>
+  </object>
+  <object id="197" x="3360" y="490">
+   <polygon points="0,0 70,0 70,-70 0,-70"/>
+  </object>
+  <object id="198" x="1470" y="700">
+   <polygon points="0,0 210,-210 210,0"/>
+  </object>
+  <object id="199" x="1680" y="630">
+   <polygon points="0,0 0,-140 70,-140 70,0 0,0"/>
+  </object>
+  <object id="200" x="1680" y="490">
+   <polygon points="0,0 70,-70 70,0"/>
+  </object>
+  <object id="201" x="1750" y="490">
+   <polygon points="0,0 280,0 280,-70 0,-70 0,0"/>
+  </object>
+ </objectgroup>
+</map>
