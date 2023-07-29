@@ -14,10 +14,13 @@ public class ScreenChanger {
 
     public ScreenChanger() {}
 
-    public void changeScreen(int screenCode) {
+    public void changeScreen(int screenCode, Mission... mission) {
         var instance = GameData.INSTANCE;
 
         switch (screenCode) {
+            case 0 -> {
+                instance.setScreen(new SignInScreen());
+            }
             case 1 -> {
                 instance.setScreen(new MenuScreen());
             }
@@ -30,17 +33,9 @@ public class ScreenChanger {
             case 4 -> {
                 instance.setScreen(new MissionScreen());
             }
-            case 6 -> {
-                instance.setScreen(new NoConnectionScreen());
+            case 5 -> {
+                instance.setScreen(new GameScreen(mission[0]));
             }
         }
-    }
-
-    public void changeScreen(int screenCode, ArrayList<LeaderBoard> leaderBoard) {
-        GameData.INSTANCE.setScreen(new SignInScreen(leaderBoard));
-    }
-
-    public void changeScreen(int screenCode, Mission mission) {
-        GameData.INSTANCE.setScreen(new GameScreen(mission));
     }
 }

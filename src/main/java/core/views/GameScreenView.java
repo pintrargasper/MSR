@@ -69,15 +69,19 @@ public class GameScreenView {
 
         Update update = MissionConnection.insertMissionData(mission.getId(), GameData.PLAYER_FIRED_BULLETS, enemyKilled, GameData.HOSTAGE_KILLED_COUNT, durationTimer.getTime());
 
-        var maxScore = Math.max(mission.getMaxScore(), update.getTotalMoney());
+        if (update != null) {
+            var maxScore = Math.max(mission.getMaxScore(), update.getTotalMoney());
 
-        mission.setCompleted(1);
-        mission.setLastScore(update.getTotalMoney());
-        mission.setMaxScore(maxScore);
+            mission.setCompleted(1);
+            mission.setLastScore(update.getTotalMoney());
+            mission.setMaxScore(maxScore);
 
-        account.setMoney(account.getMoney() + update.getTotalMoney());
+            account.setMoney(account.getMoney() + update.getTotalMoney());
 
-        gameFinnishPopup.setPopup(Money.format(update.getEarnedMoney()), Money.format(update.getHostageKilledMoney()), Money.format(update.getEnemyKilledMoney()), Money.format(update.getAmmoCosts()), update.getUsedTime(), update.getBonusPenalty(), Money.format(update.getTotalMoney()), update.getTotalMoney());
+            gameFinnishPopup.setPopup(Money.format(update.getEarnedMoney()), Money.format(update.getHostageKilledMoney()), Money.format(update.getEnemyKilledMoney()), Money.format(update.getAmmoCosts()), update.getUsedTime(), update.getBonusPenalty(), Money.format(update.getTotalMoney()), update.getTotalMoney());
+        } else {
+            gameFinnishPopup.setPopup();
+        }
         stage.addActor(gameFinnishPopup);
     }
 

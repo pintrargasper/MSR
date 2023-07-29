@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import core.*;
+import core.database.AccountConnection;
 import core.objects.Mission;
 import core.views.MissionView;
 
@@ -70,6 +71,7 @@ public class MissionPopup extends Table implements Screen {
         playButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+
                 MusicPlayer.stop();
                 MusicPlayer.setMusic(Gdx.audio.newMusic(Gdx.files.internal("music/mission.mp3")));
                 if (GameData.SETTINGS.getMusic() == 1) {
@@ -125,10 +127,21 @@ public class MissionPopup extends Table implements Screen {
     }
 
     public void setPopup(Mission mission) {
-        this.titleLabel.setText(mission.getName());
-        this.descriptionLabel.setText(mission.getDescription());
-        this.previousMissionScoreLabel.setText(Language.get("label_previous_score") + ": " + mission.getLastScore());
-        this.bestMissionScoreLabel.setText(Language.get("label_best_score") + ": " + mission.getMaxScore());
-        this.mission = mission;
+
+        if (AccountConnection.getLeaderBoard() == null) {
+            this.titleLabel.setText(Language.get("string_mission_something_wrong"));
+            this.descriptionLabel.setText(Language.get("string_mission_could_not_connect"));
+            this.lineLabel.setText("");
+            this.previousMissionScoreLabel.setText("");
+            this.bestMissionScoreLabel.setText("");
+            this.playButton.setVisible(false);
+        } else {
+            this.titleLabel.setText(mission.getName());
+            this.descriptionLabel.setText(mission.getDescription());
+            this.previousMissionScoreLabel.setText(Language.get("label_previous_score") + ": " + mission.getLastScore());
+            this.bestMissionScoreLabel.setText(Language.get("label_best_score") + ": " + mission.getMaxScore());
+            this.mission = mission;
+            this.playButton.setVisible(true);
+        }
     }
 }

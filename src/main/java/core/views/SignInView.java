@@ -65,13 +65,16 @@ public class SignInView {
 
         stage.setScrollFocus(scrollPaneTable);
 
-        int index = 0;
-
-        for (LeaderBoard user : leaderBoard) {
-            if (index++ % 3 == 0) {
-                scrollPaneTable.row();
+        try {
+            int index = 0;
+            for (LeaderBoard user : leaderBoard) {
+                if (index++ % 3 == 0) {
+                    scrollPaneTable.row();
+                }
+                scrollPaneTable.add(getCard(index, user.getUsername(), user.getRank(), user.getCompleted(), user.getPicture())).pad(0, 10, 10, 10).width(330).height(100);
             }
-            scrollPaneTable.add(getCard(index, user.getUsername(), user.getRank(), user.getCompleted(), user.getPicture())).pad(0, 10, 10, 10).width(330).height(100);
+        } catch (Exception e) {
+            leaderBoardLabel.setText("Something Went Wrong");
         }
 
         mainTable.setFillParent(true);

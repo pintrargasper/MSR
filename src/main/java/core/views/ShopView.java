@@ -105,8 +105,6 @@ public class ShopView {
             }
             missionImage.setAlign(Align.center);
 
-            //Current Skin
-
             imageTable.add(missionImage).width(220).height(100);
 
             productTable.setBackground(Background.setBackground(Background.white));

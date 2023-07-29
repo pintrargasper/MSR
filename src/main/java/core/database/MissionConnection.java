@@ -40,10 +40,10 @@ public class MissionConnection {
         String response;
         try {
             response = ApiResponse.getResponse(API.API_INSERT_MISSION_DATA, formBody);
+            return new Json().fromJson(Update.class, Update.class, response);
         } catch (Exception e) {
-            response = null;
+            return null;
         }
-        return new Json().fromJson(Update.class, Update.class, response);
     }
 
     public static ArrayList<MissionBestScore> getBestScorePerMission() {
@@ -70,7 +70,7 @@ public class MissionConnection {
         try {
             response = ApiResponse.getResponse(API.API_GAME_OVER, formBody);
         } catch (Exception e) {
-            response = null;
+            response = "";
         }
         return response;
     }
@@ -84,7 +84,7 @@ public class MissionConnection {
         try {
             response = ApiResponse.getResponse(API.API_BUY_MISSION, formBody);
         } catch (Exception e) {
-            response = null;
+            response = "";
         }
         return response;
     }

@@ -22,7 +22,7 @@ public class SignInScreen extends ScreenAdapter {
     private final SignInView signInView;
     private final ScreenChanger screenChanger;
 
-    public SignInScreen(ArrayList<LeaderBoard> leaderBoard) {
+    public SignInScreen() {
         this.stage = new Stage(new FitViewport(GameData.GAME_WIDTH, GameData.GAME_HEIGHT));
         this.signInView = new SignInView();
         this.screenChanger = new ScreenChanger(GameData.INSTANCE);
@@ -30,6 +30,8 @@ public class SignInScreen extends ScreenAdapter {
         if (MusicPlayer.getMusic() != null) {
             MusicPlayer.stop();
         }
+
+        var leaderBoard = AccountConnection.getLeaderBoard();
 
         stage.addActor(signInView.getView(stage, leaderBoard));
         Gdx.input.setInputProcessor(stage);

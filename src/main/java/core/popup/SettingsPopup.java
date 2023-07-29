@@ -134,12 +134,7 @@ public class SettingsPopup extends Table implements Screen {
         signOutButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                var leaderBoard = AccountConnection.getLeaderBoard();
-                if (leaderBoard == null) {
-                    screenChanger.changeScreen(6);
-                } else {
-                    screenChanger.changeScreen(0, leaderBoard);
-                }
+                screenChanger.changeScreen(0);
             }
         });
 

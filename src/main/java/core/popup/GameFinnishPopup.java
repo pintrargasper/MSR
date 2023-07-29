@@ -52,7 +52,7 @@ public class GameFinnishPopup extends Table implements Screen {
 
         titleLabel.setWrap(true);
 
-        innerTable.add(titleLabel).height(50).growX();
+        innerTable.add(titleLabel).pad(10, 10, 5, 10).height(50).growX();
         innerTable.row();
         innerTable.add(earnedMoneyLabel).pad(0, 10, 5, 10).growX();
         innerTable.row();
@@ -133,5 +133,10 @@ public class GameFinnishPopup extends Table implements Screen {
         var mission = GameData.MISSIONS_BEST_SCORE.stream().filter(e -> Objects.equals(e.getId(), this.mission.getId())).findFirst().get();
         mission.setScore(Math.max(mission.getScore(), money));
         mission.setUsername(GameData.PLAYER_ACCOUNT.getUsername());
+    }
+
+    public void setPopup() {
+        titleLabel.setText(Language.get("label_something_wrong"));
+        earnedMoneyLabel.setText(Language.get("label_could_not_connect"));
     }
 }
