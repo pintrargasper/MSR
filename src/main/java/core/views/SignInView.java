@@ -142,7 +142,7 @@ public class SignInView {
                     public void run() {
                         try {
                             Account account = new Account();
-                            account.setId(35L);
+                            account.setId(Long.parseLong(usernameField.getText()));
                             GameData.PLAYER_ACCOUNT = account;
 
                             account = AccountConnection.getAccountDetails();
