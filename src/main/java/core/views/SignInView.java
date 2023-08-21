@@ -172,6 +172,8 @@ public class SignInView {
                             Language.setLanguage(GameData.SETTINGS.getLanguage());
                             screenChanger.changeScreen(1);
                         } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                            e.printStackTrace();
                             errorLabel.setText("Could not connect to the server");
                         }
                     }

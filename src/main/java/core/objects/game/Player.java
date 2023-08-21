@@ -1,6 +1,7 @@
 package core.objects.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -81,12 +82,19 @@ public class Player extends PlayerEntity {
 
         timeSinceLastShot += Gdx.graphics.getDeltaTime();
 
-        if (utils.isButtonOrKeyJustPressed(settings.getKeyUpCode()) && jumpCounter < 25) {
-            float force = body.getMass() * 12;
-            body.setLinearVelocity(body.getLinearVelocity().x, 0);
-            body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
-            jumpCounter++;
+        if (utils.isButtonOrKeyPressed(settings.getKeyUpCode())) {
+            body.setLinearVelocity(body.getLinearVelocity().x, 3);
+            body.setGravityScale(0);
         }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.S))
+            body.setGravityScale(1);
+//        if (utils.isButtonOrKeyJustPressed(settings.getKeyUpCode()) && jumpCounter < 25) {
+//            float force = body.getMass() * 12;
+//            body.setLinearVelocity(body.getLinearVelocity().x, 0);
+//            body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
+//            jumpCounter++;
+//        }
 
         if (body.getLinearVelocity().y == 0) {
             jumpCounter = 0;
