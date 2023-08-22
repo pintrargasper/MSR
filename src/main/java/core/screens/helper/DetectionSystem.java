@@ -1,6 +1,5 @@
 package core.screens.helper;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import core.objects.game.Bullet;
 import core.objects.game.Enemy;
 import core.objects.game.Player;

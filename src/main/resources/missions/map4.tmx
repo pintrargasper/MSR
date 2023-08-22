@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="left-down" width="60" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="8" nextobjectid="332">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="left-down" width="60" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="8" nextobjectid="341">
  <tileset firstgid="1" name="player-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
   <image source="../pictures/skins/player/1/player-1-stand.png" width="14" height="34"/>
  </tileset>
@@ -20,7 +20,7 @@
  </tileset>
  <layer id="1" name="Map" width="60" height="20">
   <data encoding="base64" compression="zlib">
-   eJzllz1LA0EQhqfV1kKwCCSVdikl2AqHZVobRRIDgtclhWisLM7vLnZp/J/u4AyOw+7N7d1eDvGFl8ns3F3myX4c6QFA7x954PEokY+dD5x3OvI+2cc4oNrQ+dS5oBhyEfgs3bXwty7jHYprC4pXFG/Us1ZivIByfdbsN4WQOcQrhQxjsiUf70ODHlMrA5sX549538T4Hvzs/b649sn5Wfilpd7rKAM/c53zLXTd7sZobCErnp+hda1d52yUZ0GZJhQfVUypGN6qfVvKyWvndzHOvIWKKRVaz9aevnNeOt9Hfl/uMYt5VyqmVF3eGM3he20uhGNyoHweeP46opemvNeeMebDqNcoJMpR+K54hd97wlIG1Zl98yTnQ/7+3F8bvFPKLwPG2syPG8VrvZ+2PP1ZvLlRr5pXqR1BHK/lbbeVmPmD4kTlIHJkHVP01acUZ4E6C/fURaAmWU8S80pmPlv1mctCxjPnc+o3V3V9Ruv7Ocf7buk5uqZZRyW81v+nJuu+bR8qZwGnmN+ureewzF33uknWv84by4r+AhOvo9U=
+   eJzllz1LA0EQhqfV1kKwCCSVdikl2AqHZVobxRADgtclhWisLM7vLnZp/J/u4AyOw+7N7d1eDvGFl8ns3F3myX4c6QFA7x954PEokY+dD5x3OvI+2cc4oNrQ+dS5oBhyEfgs3bXwty7jHYprC4pXFG/Us1ZivIByfdbsN4WQOcQrhQxjsiUf70ODHlMrA5sX549538T4Hvzs/b649sn5Wfilpd7rKAM/c53zLXTd7sZobCErnp+hda1d52yUZ0GZJhQfVUypGN6qfVvKyWvndzHOvIWKKRVaz9aevnNeOt9Hfl/uMYt5VyqmVF3eGM3he20uhGNyoHweeP46opemvNeeMebDqNcoJMpR+K54hd97wlIG1Zl98yTnQ/7+3F8bvFPKLwPG2syPG8VrvZ+2PP1ZvLlRr5pXqR1BHK/lbbeVmPmD4kTlIHJkHVP01acUZ4E6C/fURaAmWU8S80pmPlv1mctCxjPnc+o3V3V9Ruv7Ocf7buk5uqZZRyW81v+nJuu+bR8qZwGnmN+ureewzF33uknWv84by4r+AtQ0o80=
   </data>
  </layer>
  <objectgroup id="2" name="Objects">
@@ -359,6 +359,14 @@
   <object id="331" x="997.25" y="268">
    <polygon points="0,0 -7.25,6.5 -7.25,11.5 42.5,11.25 42.5,6.75 35.25,-0.25"/>
   </object>
+  <object id="333" name="Ladder" x="1470" y="980" width="70" height="70"/>
+  <object id="334" name="Ladder" x="1470" y="1050" width="70" height="70"/>
+  <object id="335" name="Ladder" x="1470" y="910" width="70" height="70"/>
+  <object id="336" name="Ladder" x="1470" y="840" width="70" height="70"/>
+  <object id="337" name="Ladder" x="1470" y="770" width="70" height="70"/>
+  <object id="338" name="Ladder" x="2240" y="630" width="70" height="70"/>
+  <object id="339" name="Ladder" x="2240" y="490" width="70" height="70"/>
+  <object id="340" name="Ladder" x="2240" y="560" width="70" height="70"/>
  </objectgroup>
  <layer id="7" name="Map" width="60" height="20">
   <data encoding="base64" compression="zlib">

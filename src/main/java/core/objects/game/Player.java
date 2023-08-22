@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -51,6 +54,8 @@ public class Player extends PlayerEntity {
     public void update() {
         x = body.getPosition().x * GameData.PPM;
         y = body.getPosition().y * GameData.PPM;
+        getPlayerRectangle().x = x;
+        getPlayerRectangle().y = y;
         checkUserInput();
     }
 
@@ -82,19 +87,34 @@ public class Player extends PlayerEntity {
 
         timeSinceLastShot += Gdx.graphics.getDeltaTime();
 
-        if (utils.isButtonOrKeyPressed(settings.getKeyUpCode())) {
-            body.setLinearVelocity(body.getLinearVelocity().x, 3);
-            body.setGravityScale(0);
+        int onLadder = 0;
+        for (Rectangle rectangle : gameScreen.ladderList) {
+            if (playerRectangle.overlaps(rectangle)) {
+                onLadder++;
+            }
+            setOnLadder(onLadder > 0);
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.S))
+        if (isOnLadder()) {
+            velY = 0;
+            body.setGravityScale(0);
+            if (utils.isButtonOrKeyPressed(settings.getKeyUpCode())) {
+                velY = this.ladderClimbSpeed;
+            } else if (utils.isButtonOrKeyPressed(Input.Keys.S)) {
+                velY = -this.ladderClimbSpeed;
+            } else {
+                velY = 0;
+            }
+            body.setLinearVelocity(body.getLinearVelocity().x, velY);
+        } else {
             body.setGravityScale(1);
-//        if (utils.isButtonOrKeyJustPressed(settings.getKeyUpCode()) && jumpCounter < 25) {
-//            float force = body.getMass() * 12;
-//            body.setLinearVelocity(body.getLinearVelocity().x, 0);
-//            body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
-//            jumpCounter++;
-//        }
+            if (utils.isButtonOrKeyJustPressed(settings.getKeyUpCode()) && jumpCounter < this.maxJumpCount) {
+                float force = body.getMass() * this.jumpForce;
+                body.setLinearVelocity(body.getLinearVelocity().x, 0);
+                body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
+                jumpCounter++;
+            }
+        }
 
         if (body.getLinearVelocity().y == 0) {
             jumpCounter = 0;

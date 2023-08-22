@@ -5,10 +5,13 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import core.GameData;
@@ -70,7 +73,9 @@ public class TiledMapHelper {
                     weaponBody.setUserData("Weapon");
 
                     Weapon weapon = new Weapon(20 * 1.5f, 7 * 1.5f, weaponBody, GameData.WEAPON_SPEED, GameData.CURRENT_WEAPON_SKIN);
-                    gameScreen.setPlayer(new Player((data.getWidth() * 1.5f), (data.getHeight() * 1.5f), playerBody, gameScreen, world, orthographicCamera, weapon));
+                    Player player = new Player((data.getWidth() * 1.5f), (data.getHeight() * 1.5f), playerBody, gameScreen, world, orthographicCamera, weapon);
+                    player.setPlayerRectangle(new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight()));
+                    gameScreen.setPlayer(player);
                 } else if (mapObject.getName() != null && mapObject.getName().equals("Enemy")) {
 
                     var data = objectData(mapObject);
@@ -100,6 +105,11 @@ public class TiledMapHelper {
                     body.setUserData("Vip");
                     gameScreen.vipList.add(new Vip(data.getWidth() * 1.5f, data.getHeight() * 1.5f, body));
                     GameData.VIP_COUNT += 1;
+                }
+            } else if (mapObject instanceof RectangleMapObject) {
+                if (mapObject.getName() != null && mapObject.getName().equals("Ladder")) {
+                    Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
+                    gameScreen.ladderList.add(new Rectangle(rectangle));
                 }
             }
         }

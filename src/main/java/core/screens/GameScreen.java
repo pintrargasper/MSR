@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
@@ -45,6 +46,7 @@ public class GameScreen extends ScreenAdapter {
     public ArrayList<Enemy> enemyList, removeEnemyList;
     public ArrayList<Hostage> hostageList, removeHostageList;
     public ArrayList<Vip> vipList, removeVipList;
+    public ArrayList<Rectangle> ladderList;
     public GameStats gameStats;
 
     public enum GameStats {
@@ -71,6 +73,7 @@ public class GameScreen extends ScreenAdapter {
         removeEnemyList = new ArrayList<>();
         vipList = new ArrayList<>();
         removeVipList = new ArrayList<>();
+        ladderList = new ArrayList<>();
         this.tiledMapHelper = new TiledMapHelper(this, world, orthographicCamera);
         this.orthogonalTiledMapRenderer = tiledMapHelper.setupMap(mission.getMap());
         this.detectionSystem = new DetectionSystem();

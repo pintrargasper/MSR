@@ -1,5 +1,6 @@
 package core.screens.collision;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import core.GameData;
 import core.objects.game.*;
