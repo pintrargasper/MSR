@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="left-down" width="60" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="184">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="left-down" width="60" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="189">
  <tileset firstgid="1" name="player-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
   <image source="../pictures/skins/player/1/player-1-stand.png" width="14" height="34"/>
  </tileset>
@@ -20,7 +20,7 @@
  </tileset>
  <layer id="1" name="Map" width="60" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlTtuAjEQhqckHIKCNKu9QBBJkRZKipxgy1yClgTyaICCx1GZUWxp1sz4JRPQil/6ZeydHfsbBgNw113d0UDxwzUPdUFVynoPusms8ZK6yOzjJXWNOcRL+i/mGv144T0sb2P2Gyh79kC/21xz1Qnv9QP7lKg553XnMbVeKyOJWPuZ5/pCf6N/0L9mrUSf+Xjpc4j5E71kXpl1yzpMOIvNRTl26D36gD6ymFCfhVQ58Xw+jMjv680K4u6HF/QoYKsPZ5T0HLHntUSsU2dtLQUabc3zrSdmArfJbFnfAV5L59aYQ30kuUTtfKyjs+g8lfqepTwxv0H+jsTqckrcC2eMOSs/Y65yaufrMZ/48w383dd2JPFaz5Qc0j2RqlTmMbTrnSqpZ+bQ5pjBOXMJVqtxhrX/mhy9OfMnwaVYb0FNOKSlE07HOrw=
+   eJztlTtuAjEQhqckHIKCNCsuACIUtKSk4ARbcom0gTygAYoAR2VG2NIwePySCWjFL/3y+rFjf96xF+Cpp5qjjuKXey7qhqqU9hY0k1njJTWR2cdLahpziJf0X8w99OuN57C8tZmvo8zZAv1uk+bqJbzXDsxTYs85r6zH7PVGKUnE2s5c1w/6F71Cr01biTzz8dJziHmJ/mL+Nu2WtZuwFhuLYvyh9+gD+sjGhPIspEqM5/VuRHxfblYQdz+M0IOArRailKLv9BYx571ErO+ibeMaaLQz/Tuln3gn8JjMlnUOMC4V055LjTmURy6X2Dsf6+BqdLxq9lzqO7vixJxB/o6LVXK6uD9FKVWL+kSsMVc5e+fLMZ94/xbO97UtSXyvp0oM1z2RqlTmIVzud6pcOfMBlxxTuGYuwWo1zLD2r8nRTNT7DpdifQTJ8xrSCYpsPLA=
   </data>
  </layer>
  <objectgroup id="2" name="Objects">
@@ -218,7 +218,12 @@
   <object id="179" name="Ladder" x="140" y="630" width="70" height="70"/>
   <object id="180" name="Ladder" x="420" y="630" width="70" height="70"/>
   <object id="181" name="Ladder" x="420" y="700" width="70" height="70"/>
-  <object id="182" name="Ladder" x="3360" y="1260" width="70" height="70"/>
+  <object id="182" name="Ladder" x="3640" y="1050" width="70" height="70"/>
   <object id="183" name="Ladder" x="3360" y="1330" width="70" height="70"/>
+  <object id="184" name="Ladder" x="3360" y="1260" width="70" height="70"/>
+  <object id="185" name="Ladder" x="3640" y="980" width="70" height="70"/>
+  <object id="186" name="Ladder" x="3640" y="910" width="70" height="70"/>
+  <object id="187" name="Ladder" x="3640" y="840" width="70" height="70"/>
+  <object id="188" name="Ladder" x="3640" y="770" width="70" height="70"/>
  </objectgroup>
 </map>

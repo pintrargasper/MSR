@@ -3,20 +3,15 @@ package core.popup;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
 import core.*;
-import core.database.AccountConnection;
 import core.database.SettingsConnection;
 import core.database.objects.Settings;
-import core.views.MenuView;
-
 import java.util.ArrayList;
 
 public class SettingsPopup extends Table implements Screen {
@@ -25,8 +20,8 @@ public class SettingsPopup extends Table implements Screen {
     private final Skin skin;
     private final Table mainTable, formTable;
     private final ScrollPane scrollPane;
-    private final Label accountLabel, viewAccountLabel, signOutLabel, gameOptionsLabel, languageLabel, musicLabel, soundEffectLabel, keyboardControlsLabel, upLabel, leftLabel, rightLabel, shootLabel, pauseLabel, errorLabel;
-    private final TextButton viewAccountButton, signOutButton, musicButton, soundEffectButton, upButton, leftButton, rightButton, shootButton, pauseButton, saveButton, closeButton;
+    private final Label accountLabel, viewAccountLabel, signOutLabel, gameOptionsLabel, languageLabel, musicLabel, soundEffectLabel, keyboardControlsLabel, upLabel, downLabel, leftLabel, rightLabel, shootLabel, pauseLabel, errorLabel;
+    private final TextButton viewAccountButton, signOutButton, musicButton, soundEffectButton, upButton, downButton, leftButton, rightButton, shootButton, pauseButton, saveButton, closeButton;
     private TextButton[] textButtons;
     private final SelectBox languageSelectBox;
     private final KeySelectionPopup keySelectionPopup;
@@ -53,6 +48,7 @@ public class SettingsPopup extends Table implements Screen {
         this.soundEffectLabel = new Label(Language.get("label_sound_effect"), skin);
         this.keyboardControlsLabel = new Label(Language.get("label_keyboard_controls"), skin.get("medium-title", Label.LabelStyle.class));
         this.upLabel = new Label(Language.get("label_up"), skin);
+        this.downLabel = new Label(Language.get("label_down"), skin);
         this.leftLabel = new Label(Language.get("label_left"), skin);
         this.rightLabel = new Label(Language.get("label_right"), skin);
         this.shootLabel = new Label(Language.get("label_shoot"), skin);
@@ -63,6 +59,7 @@ public class SettingsPopup extends Table implements Screen {
         this.musicButton = new TextButton(codeToStringForMusic(settings.getMusic()), skin);
         this.soundEffectButton = new TextButton(codeToStringForMusic(settings.getSoundEffects()), skin);
         this.upButton = new TextButton(codeToString(settings.getKeyUpCode()), skin);
+        this.downButton = new TextButton(codeToString(settings.getKeyDownCode()), skin);
         this.leftButton = new TextButton(codeToString(settings.getKeyLeftCode()), skin);
         this.rightButton = new TextButton(codeToString(settings.getKeyRightCode()), skin);
         this.shootButton = new TextButton(codeToString(settings.getKeyShootCode()), skin);
@@ -103,6 +100,9 @@ public class SettingsPopup extends Table implements Screen {
         formTable.row();
         formTable.add(upLabel).pad(5, 30, 5, 10).width(600).height(30);
         formTable.add(upButton).pad(5, 10, 5, 10).width(200).height(30);
+        formTable.row();
+        formTable.add(downLabel).pad(5, 30, 5, 10).width(600).height(30);
+        formTable.add(downButton).pad(5, 10, 5, 10).width(200).height(30);
         formTable.row();
         formTable.add(leftLabel).pad(5, 30, 5, 10).width(600).height(30);
         formTable.add(leftButton).pad(5, 10, 5, 10).width(200).height(30);
@@ -169,6 +169,16 @@ public class SettingsPopup extends Table implements Screen {
             }
         });
 
+        downButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                keySelectionPopup.setPopup(downLabel.getText().toString(), downButton.getText().toString(), downButton);
+                utils.disableAll(stage, true);
+                stage.addActor(keySelectionPopup);
+            }
+        });
+
+
         leftButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -210,6 +220,7 @@ public class SettingsPopup extends Table implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 ArrayList<TextButton> buttons = new ArrayList<>();
                 buttons.add(upButton);
+                buttons.add(downButton);
                 buttons.add(leftButton);
                 buttons.add(rightButton);
                 buttons.add(shootButton);
@@ -237,14 +248,15 @@ public class SettingsPopup extends Table implements Screen {
 
                 String error;
                 String language = languageSelectBox.getSelected().toString();
-                if (SettingsConnection.updateSettings(music,soundEffect, language, codes[0], codes[1], codes[2], codes[3], codes[4]).matches("1")) {
+                if (SettingsConnection.updateSettings(music,soundEffect, language, codes[0], codes[1], codes[2], codes[3], codes[4], codes[5]).matches("1")) {
                     settings.setMusic(music);
                     settings.setSoundEffects(soundEffect);
                     settings.setKeyUpCode(codes[0]);
-                    settings.setKeyLeftCode(codes[1]);
-                    settings.setKeyRightCode(codes[2]);
-                    settings.setKeyShootCode(codes[3]);
-                    settings.setKeyPauseCode(codes[4]);
+                    settings.setKeyDownCode(codes[1]);
+                    settings.setKeyLeftCode(codes[2]);
+                    settings.setKeyRightCode(codes[3]);
+                    settings.setKeyShootCode(codes[4]);
+                    settings.setKeyPauseCode(codes[5]);
                     settings.setLanguage(language);
 
                     Language.setLanguage(language);

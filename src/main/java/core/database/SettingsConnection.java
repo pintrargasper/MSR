@@ -21,13 +21,14 @@ public class SettingsConnection {
         return new Json().fromJson(Settings.class, Settings.class, response);
     }
 
-    public static String updateSettings(int music, int soundEffect, String language,int upCode, int leftCode, int rightCode, int shootCode, int pauseCode) {
+    public static String updateSettings(int music, int soundEffect, String language,int upCode, int downCode, int leftCode, int rightCode, int shootCode, int pauseCode) {
         RequestBody formBody = new FormBody.Builder()
                 .add("idUser", String.valueOf(GameData.PLAYER_ACCOUNT.getId()))
                 .add("music", String.valueOf(music))
                 .add("soundEffect", String.valueOf(soundEffect))
                 .add("language", language)
                 .add("keyUp", String.valueOf(upCode))
+                .add("keyDown", String.valueOf(downCode))
                 .add("keyLeft", String.valueOf(leftCode))
                 .add("keyRight", String.valueOf(rightCode))
                 .add("keyShoot", String.valueOf(shootCode))

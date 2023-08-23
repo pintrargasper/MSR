@@ -7,6 +7,7 @@ public class Settings {
     private int soundEffects;
     private String language;
     private int keyUpCode;
+    private int keyDownCode;
     private int keyLeftCode;
     private int keyRightCode;
     private int keyShootCode;
@@ -50,6 +51,14 @@ public class Settings {
 
     public void setKeyUpCode(int keyUpCode) {
         this.keyUpCode = keyUpCode;
+    }
+
+    public int getKeyDownCode() {
+        return keyDownCode;
+    }
+
+    public void setKeyDownCode(int keyDownCode) {
+        this.keyDownCode = keyDownCode;
     }
 
     public int getKeyLeftCode() {

@@ -1,13 +1,10 @@
 package core.objects.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -100,7 +97,7 @@ public class Player extends PlayerEntity {
             body.setGravityScale(0);
             if (utils.isButtonOrKeyPressed(settings.getKeyUpCode())) {
                 velY = this.ladderClimbSpeed;
-            } else if (utils.isButtonOrKeyPressed(Input.Keys.S)) {
+            } else if (utils.isButtonOrKeyPressed(settings.getKeyDownCode())) {
                 velY = -this.ladderClimbSpeed;
             } else {
                 velY = 0;
