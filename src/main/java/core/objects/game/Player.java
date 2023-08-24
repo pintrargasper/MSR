@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import core.GameData;
+import core.SoundEffectPlayer;
 import core.Utils;
 import core.database.objects.Settings;
 import core.screens.GameScreen;
@@ -27,6 +28,7 @@ public class Player extends PlayerEntity {
     private int jumpCounter;
     public boolean direction = false;
     private float timeSinceLastShot = 0f;
+    private boolean walkingEffect;
 
     public Player(float width, float height, Body body, GameScreen gameScreen, World world, OrthographicCamera orthographicCamera, Weapon weapon) {
         super(width, height, body, weapon);
@@ -53,11 +55,17 @@ public class Player extends PlayerEntity {
         y = body.getPosition().y * GameData.PPM;
         getPlayerRectangle().x = x;
         getPlayerRectangle().y = y;
-        checkUserInput();
+
+        if (GameData.PLAYER_LIVES != 0) {
+            checkUserInput();
+        } else {
+            GameData.SOUND_EFFECT_PLAYER.stopAll();
+        }
     }
 
     private void checkUserInput() {
         velX = 0;
+        walkingEffect = false;
 
         if (Bullet.diffX(orthographicCamera, this) < 0) {
             setSprite(leftSprite);
@@ -67,16 +75,14 @@ public class Player extends PlayerEntity {
             direction = false;
         }
 
-        if (utils.isButtonOrKeyPressed(settings.getKeyLeftCode())) {
-            velX--;
-        }
-
-        if (utils.isButtonOrKeyPressed(settings.getKeyRightCode())) {
-            velX++;
+        if (utils.isButtonOrKeyPressed(settings.getKeyLeftCode()) || utils.isButtonOrKeyPressed(settings.getKeyRightCode())) {
+            velX = utils.isButtonOrKeyPressed(settings.getKeyLeftCode()) ? -1 : 1;
+            walkingEffect = true;
         }
 
         if (utils.isButtonOrKeyPressed(settings.getKeyShootCode())) {
             if (timeSinceLastShot >= weapon.getSpeed()) {
+                GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.SHOOT_EFFECT);
                 shoot();
                 timeSinceLastShot = 0f;
             }
@@ -97,20 +103,30 @@ public class Player extends PlayerEntity {
             body.setGravityScale(0);
             if (utils.isButtonOrKeyPressed(settings.getKeyUpCode())) {
                 velY = this.ladderClimbSpeed;
+                walkingEffect = true;
             } else if (utils.isButtonOrKeyPressed(settings.getKeyDownCode())) {
                 velY = -this.ladderClimbSpeed;
-            } else {
-                velY = 0;
+                walkingEffect = true;
+            }
+            if (body.getLinearVelocity().y == 0 && utils.isButtonOrKeyPressed(settings.getKeyDownCode())) {
+                walkingEffect = false;
             }
             body.setLinearVelocity(body.getLinearVelocity().x, velY);
         } else {
             body.setGravityScale(1);
             if (utils.isButtonOrKeyJustPressed(settings.getKeyUpCode()) && jumpCounter < this.maxJumpCount) {
+                GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.JUMP_EFFECT);
                 float force = body.getMass() * this.jumpForce;
                 body.setLinearVelocity(body.getLinearVelocity().x, 0);
                 body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
                 jumpCounter++;
             }
+        }
+
+        if (walkingEffect) {
+            GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.WALKING_EFFECT);
+        } else {
+            GameData.SOUND_EFFECT_PLAYER.stopEffect(SoundEffectPlayer.SoundEffectType.WALKING_EFFECT);
         }
 
         if (body.getLinearVelocity().y == 0) {
@@ -120,7 +136,6 @@ public class Player extends PlayerEntity {
     }
 
     private void shoot() {
-
         float angle = Bullet.getBulletAngle(weapon, orthographicCamera);
         double weaponLength = Math.sqrt(Math.pow(weapon.getHeight(), 2) + Math.pow(weapon.getWidth(),2));
 

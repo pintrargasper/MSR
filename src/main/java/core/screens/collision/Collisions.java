@@ -1,8 +1,8 @@
 package core.screens.collision;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import core.GameData;
+import core.SoundEffectPlayer;
 import core.objects.game.*;
 import core.screens.GameScreen;
 import core.views.NavigationBar;
@@ -62,12 +62,17 @@ public class Collisions {
 
         if (fixtureA.getBody().getUserData() != null && fixtureB.getBody().getUserData() != null) {
             switch (fixtureA.getBody().getUserData().toString() + fixtureB.getBody().getUserData().toString()) {
-                case "EnemyBulletEnemy", "EnemyEnemyBullet", "HostagePlayer", "PlayerHostage", "VipPlayer", "PlayerVip", "EnemyBulletPlayerBullet", "PlayerBulletEnemyBullet" -> {
+                case "EnemyBulletEnemy", "EnemyEnemyBullet", "EnemyBulletPlayerBullet", "PlayerBulletEnemyBullet" -> {
                     addFixture(fixtureA, fixtureB);
                 }
-                case "EnemyPlayerBullet", "PlayerBulletEnemy"  -> {
+                case "HostagePlayer", "PlayerHostage", "VipPlayer", "PlayerVip" -> {
+                    addFixture(fixtureA, fixtureB);
+                    GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.COLLECT_EFFECT);
+                }
+                case "EnemyPlayerBullet", "PlayerBulletEnemy" -> {
                     addFixture(fixtureA, fixtureB);
                     GameData.WEAPON_KILLS++;
+                    GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.HIT_EFFECT);
                 }
                 case "EnemyBulletPlayer", "PlayerEnemyBullet" -> {
                     addFixture(fixtureA, fixtureB);

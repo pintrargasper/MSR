@@ -9,7 +9,6 @@ public class Boot extends Game {
 	@Override
 	public void create() {
 		this.screenChanger = new ScreenChanger(this);
-
 		screenChanger.changeScreen(0);
 	}
 

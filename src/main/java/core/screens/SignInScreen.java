@@ -4,17 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import core.GameData;
-import core.Language;
-import core.MusicPlayer;
 import core.ScreenChanger;
 import core.database.AccountConnection;
-import core.objects.LeaderBoard;
 import core.views.SignInView;
-
-import java.util.ArrayList;
 
 public class SignInScreen extends ScreenAdapter {
 
@@ -27,8 +21,8 @@ public class SignInScreen extends ScreenAdapter {
         this.signInView = new SignInView();
         this.screenChanger = new ScreenChanger(GameData.INSTANCE);
 
-        if (MusicPlayer.getMusic() != null) {
-            MusicPlayer.stop();
+        if (GameData.MUSIC_PLAYER != null) {
+            GameData.MUSIC_PLAYER.stopAll();
         }
 
         var leaderBoard = AccountConnection.getLeaderBoard();

@@ -103,11 +103,8 @@ public class GameScreenView {
     }
 
     public void changeMusic() {
-        MusicPlayer.stop();
-        MusicPlayer.setMusic(GameData.BASIC_MUSIC);
-        if (GameData.SETTINGS.getMusic() == 1) {
-            MusicPlayer.play();
-        }
+        GameData.MUSIC_PLAYER.stopMusic(MusicPlayer.MusicType.MISSION);
+        GameData.MUSIC_PLAYER.playMusic(MusicPlayer.MusicType.BASIC);
     }
 
     public PausePopup getPausePopup() {

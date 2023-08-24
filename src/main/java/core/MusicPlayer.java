@@ -1,33 +1,43 @@
 package core;
 
 import com.badlogic.gdx.audio.Music;
+import core.database.objects.Settings;
+import java.util.Map;
 
 public class MusicPlayer {
+    private final Settings settings;
+    private final Map<MusicType, Music> musicMap;
 
-    private static Music music;
-
-    public static void play() {
-        music.setLooping(true);
-        music.play();
+    public MusicPlayer() {
+        this.settings = GameData.SETTINGS;
+        this.musicMap = GameData.MUSIC_MAP;
     }
 
-    public static void pause() {
-        music.pause();
+    public enum MusicType {
+        BASIC,
+        MISSION,
     }
 
-    public static void stop() {
-        music.stop();
+    public void playMusic(MusicType musicType) {
+        if (settings.getMusic() == 1) {
+            Music music = musicMap.get(musicType);
+            if (music != null) {
+                music.setLooping(true);
+                music.play();
+            }
+        }
     }
 
-    public static boolean isPlaying() {
-        return music.isPlaying();
+    public void stopMusic(MusicType musicType) {
+        Music music = musicMap.get(musicType);
+        if (music != null) {
+            music.stop();
+        }
     }
 
-    public static Music getMusic() {
-        return music;
-    }
-
-    public static void setMusic(Music music) {
-        MusicPlayer.music = music;
+    public void stopAll() {
+        for (Music music : musicMap.values()) {
+            music.stop();
+        }
     }
 }

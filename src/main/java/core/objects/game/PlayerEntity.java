@@ -26,7 +26,7 @@ public abstract class PlayerEntity {
         this.velY = 0;
         this.speed = 0;
         this.ladderClimbSpeed = 3;
-        this.maxJumpCount = 25;
+        this.maxJumpCount = 1;
         this.jumpForce = 12;
     }
 
@@ -48,11 +48,9 @@ public abstract class PlayerEntity {
     public float getY() { return y;}
     public float getHeight() { return height;}
     public float getWidth() { return width;}
-
     public Rectangle getPlayerRectangle() {
         return playerRectangle;
     }
-
     public void setPlayerRectangle(Rectangle playerRectangle) {
         this.playerRectangle = playerRectangle;
     }

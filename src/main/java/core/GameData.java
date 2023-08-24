@@ -7,8 +7,9 @@ import core.database.objects.Settings;
 import core.objects.Account;
 import core.objects.CustomSkin;
 import core.objects.Mission;
-
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameData {
 
@@ -21,8 +22,11 @@ public class GameData {
     public static final int SKINS_LIMIT = 22;
 
     //Music
-    public static final Music BASIC_MUSIC = Gdx.audio.newMusic(Gdx.files.internal("music/basic.mp3"));
-    public static final Music MISSION_MUSIC = Gdx.audio.newMusic(Gdx.files.internal("music/mission.mp3"));
+    public static MusicPlayer MUSIC_PLAYER;
+    public static SoundEffectPlayer SOUND_EFFECT_PLAYER;
+
+    public static HashMap<MusicPlayer.MusicType, Music> MUSIC_MAP;
+    public static Map<SoundEffectPlayer.SoundEffectType, Music> SOUND_EFFECT_MAP;
 
     //Player
     public static Account PLAYER_ACCOUNT;

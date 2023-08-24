@@ -71,12 +71,8 @@ public class MissionPopup extends Table implements Screen {
         playButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
-                MusicPlayer.stop();
-                MusicPlayer.setMusic(Gdx.audio.newMusic(Gdx.files.internal("music/mission.mp3")));
-                if (GameData.SETTINGS.getMusic() == 1) {
-                    MusicPlayer.play();
-                }
+                GameData.MUSIC_PLAYER.stopMusic(MusicPlayer.MusicType.BASIC);
+                GameData.MUSIC_PLAYER.playMusic(MusicPlayer.MusicType.MISSION);
                 screenChanger.changeScreen(5, mission);
             }
         });

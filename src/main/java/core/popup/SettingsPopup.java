@@ -261,10 +261,10 @@ public class SettingsPopup extends Table implements Screen {
 
                     Language.setLanguage(language);
 
-                    if (MusicPlayer.isPlaying() && music == 0) {
-                        MusicPlayer.pause();
-                    } else if (!MusicPlayer.isPlaying() && music == 1) {
-                        MusicPlayer.play();
+                    if (music == 0) {
+                        GameData.MUSIC_PLAYER.stopMusic(MusicPlayer.MusicType.BASIC);
+                    } else {
+                        GameData.MUSIC_PLAYER.playMusic(MusicPlayer.MusicType.BASIC);
                     }
                     error = Language.get("string_settings_saved");
                 } else {

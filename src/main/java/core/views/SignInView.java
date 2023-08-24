@@ -1,10 +1,9 @@
 package core.views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Net;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,12 +16,11 @@ import core.database.AccountConnection;
 import core.database.MissionConnection;
 import core.database.SettingsConnection;
 import core.database.SkinConnection;
-import core.database.objects.MissionBestScore;
 import core.objects.Account;
 import core.objects.LeaderBoard;
 import core.web.PicturesDownloader;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SignInView {
 
@@ -164,15 +162,29 @@ public class SignInView {
                             var weapon = GameData.OWNED_SKINS_LIST.stream().filter(e -> e.getPicture().contains("weapon-" + GameData.CURRENT_WEAPON_SKIN)).findFirst().get();
                             GameData.WEAPON_SPEED = weapon.getSpeed();
 
-                            MusicPlayer.setMusic(GameData.BASIC_MUSIC);
-                            if (GameData.SETTINGS.getMusic() == 1) {
-                                MusicPlayer.play();
-                            }
+                            var musicMap = new HashMap<MusicPlayer.MusicType, Music>();
+                            musicMap.put(MusicPlayer.MusicType.BASIC,  Gdx.audio.newMusic(Gdx.files.internal("music/basic.mp3")));
+                            musicMap.put(MusicPlayer.MusicType.MISSION,  Gdx.audio.newMusic(Gdx.files.internal("music/mission.mp3")));
+
+                            var soundEffectMap = new HashMap<SoundEffectPlayer.SoundEffectType, Music>();
+                            soundEffectMap.put(SoundEffectPlayer.SoundEffectType.WALKING_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/walking-effect.mp3")));
+                            soundEffectMap.put(SoundEffectPlayer.SoundEffectType.JUMP_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/jump-effect.mp3")));
+                            soundEffectMap.put(SoundEffectPlayer.SoundEffectType.SHOOT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/hand-gun-shoot-effect.mp3")));
+                            soundEffectMap.put(SoundEffectPlayer.SoundEffectType.COLLECT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/collect-effect.mp3")));
+                            soundEffectMap.put(SoundEffectPlayer.SoundEffectType.HIT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/hit-effect.mp3")));
+
+                            GameData.MUSIC_MAP = musicMap;
+                            GameData.SOUND_EFFECT_MAP = soundEffectMap;
+
+                            GameData.MUSIC_PLAYER = new MusicPlayer();
+                            GameData.MUSIC_PLAYER.playMusic(MusicPlayer.MusicType.BASIC);
+                            GameData.SOUND_EFFECT_PLAYER = new SoundEffectPlayer();
 
                             Language.setLanguage(GameData.SETTINGS.getLanguage());
                             screenChanger.changeScreen(1);
                         } catch (Exception e) {
                             errorLabel.setText("Could not connect to the server");
+                            System.out.println(e.getMessage());
                         }
                     }
                 }, 3);
