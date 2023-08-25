@@ -17,7 +17,6 @@ import core.Utils;
 import core.database.SkinConnection;
 import core.objects.CustomSkin;
 import core.views.InventoryView;
-import jdk.jshell.execution.Util;
 
 import java.util.ArrayList;
 
@@ -68,7 +67,10 @@ public class InventoryPopup extends Table implements Screen {
                     GameData.CURRENT_CURSOR_SKIN = cursor;
                     GameData.CURRENT_AIM_SKIN = aim;
                     GameData.CURRENT_WEAPON_SKIN = weapon;
-                    GameData.WEAPON_SPEED = currentWeapon.getSpeed();
+                    GameData.CURRENT_WEAPON_SPEED = currentWeapon.getSpeed();
+                    GameData.CURRENT_WEAPON_EFFECT = currentWeapon.getSoundEffect();
+                    GameData.CURRENT_WEAPON_WIDTH = currentWeapon.getWidth();
+                    GameData.CURRENT_WEAPON_HEIGHT = currentWeapon.getHeight();
 
                     message = Language.get("string_skins_saved");
                 } else {

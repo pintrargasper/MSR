@@ -1,21 +1,25 @@
 package core.objects.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
+import core.GameData;
+import core.SoundEffectPlayer;
 
 public class Weapon extends WeaponEntity {
 
     private Sprite sprite;
     private final Sprite leftSprite, rightSprite;
 
-    public Weapon(float width, float height, Body body, float speed, String type) {
+    public Weapon(float width, float height, Body body, float speed, String type, String soundEffect) {
         super(width, height, speed, body);
         this.leftSprite = new Sprite(new Texture("pictures/skins/weapon/" + type + "/weapon-" + type + "-left.png"));
         this.rightSprite = new Sprite(new Texture("pictures/skins/weapon/" + type + "/weapon-" + type + "-right.png"));
         this.sprite = rightSprite;
+        GameData.SOUND_EFFECT_MAP.put(SoundEffectPlayer.SoundEffectType.SHOOT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/" + soundEffect)));
         body.destroyFixture(body.getFixtureList().first());
     }
 

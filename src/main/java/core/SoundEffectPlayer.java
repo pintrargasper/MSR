@@ -17,6 +17,7 @@ public class SoundEffectPlayer {
         WALKING_EFFECT,
         JUMP_EFFECT,
         SHOOT_EFFECT,
+        ENEMY_SHOOT_EFFECT,
         COLLECT_EFFECT,
         HIT_EFFECT
     }

@@ -160,7 +160,10 @@ public class SignInView {
                             GameData.CURRENT_WEAPON_SKIN = skins[4];
 
                             var weapon = GameData.OWNED_SKINS_LIST.stream().filter(e -> e.getPicture().contains("weapon-" + GameData.CURRENT_WEAPON_SKIN)).findFirst().get();
-                            GameData.WEAPON_SPEED = weapon.getSpeed();
+                            GameData.CURRENT_WEAPON_SPEED = weapon.getSpeed();
+                            GameData.CURRENT_WEAPON_EFFECT = weapon.getSoundEffect();
+                            GameData.CURRENT_WEAPON_WIDTH = weapon.getWidth();
+                            GameData.CURRENT_WEAPON_HEIGHT = weapon.getHeight();
 
                             var musicMap = new HashMap<MusicPlayer.MusicType, Music>();
                             musicMap.put(MusicPlayer.MusicType.BASIC,  Gdx.audio.newMusic(Gdx.files.internal("music/basic.mp3")));
@@ -169,7 +172,7 @@ public class SignInView {
                             var soundEffectMap = new HashMap<SoundEffectPlayer.SoundEffectType, Music>();
                             soundEffectMap.put(SoundEffectPlayer.SoundEffectType.WALKING_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/walking-effect.mp3")));
                             soundEffectMap.put(SoundEffectPlayer.SoundEffectType.JUMP_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/jump-effect.mp3")));
-                            soundEffectMap.put(SoundEffectPlayer.SoundEffectType.SHOOT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/hand-gun-shoot-effect.mp3")));
+                            soundEffectMap.put(SoundEffectPlayer.SoundEffectType.ENEMY_SHOOT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/enemy-handgun-effect.mp3")));
                             soundEffectMap.put(SoundEffectPlayer.SoundEffectType.COLLECT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/collect-effect.mp3")));
                             soundEffectMap.put(SoundEffectPlayer.SoundEffectType.HIT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/hit-effect.mp3")));
 

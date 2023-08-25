@@ -71,7 +71,7 @@ public class TiledMapHelper {
                     Body weaponBody = bodyHelper.createObjectBody(20, 7, playerBody.getPosition().x * GameData.PPM, playerBody.getPosition().y * GameData.PPM, "Player");
                     weaponBody.setUserData("Weapon");
 
-                    Weapon weapon = new Weapon(20 * 1.5f, 7 * 1.5f, weaponBody, GameData.WEAPON_SPEED, GameData.CURRENT_WEAPON_SKIN);
+                    Weapon weapon = new Weapon(GameData.CURRENT_WEAPON_WIDTH * 1.5f, GameData.CURRENT_WEAPON_HEIGHT * 1.5f, weaponBody, GameData.CURRENT_WEAPON_SPEED, GameData.CURRENT_WEAPON_SKIN, GameData.CURRENT_WEAPON_EFFECT);
                     Player player = new Player((data.getWidth() * 1.5f), (data.getHeight() * 1.5f), playerBody, gameScreen, world, orthographicCamera, weapon);
                     player.setPlayerRectangle(new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight()));
                     gameScreen.setPlayer(player);
@@ -85,7 +85,7 @@ public class TiledMapHelper {
                     Body weaponBody = bodyHelper.createObjectBody(20, 7, enemyBody.getPosition().x * GameData.PPM, enemyBody.getPosition().y * GameData.PPM, "Enemy");
                     weaponBody.setUserData("Weapon");
 
-                    Weapon weapon = new Weapon(20 * 1.5f, 7 * 1.5f, weaponBody, GameData.WEAPON_SPEED, GameData.CURRENT_ENEMY_WEAPON_SKIN);
+                    Weapon weapon = new Weapon(20 * 1.5f, 7 * 1.5f, weaponBody, GameData.CURRENT_WEAPON_SPEED, GameData.CURRENT_ENEMY_WEAPON_SKIN, GameData.CURRENT_WEAPON_EFFECT);
                     gameScreen.enemyList.add(new Enemy(data.getWidth() * 1.5f, data.getHeight() * 1.5f, enemyBody, gameScreen, orthographicCamera, bodyHelper, weapon));
                     GameData.ENEMY_COUNT += 1;
                 } else if (mapObject.getName() != null && mapObject.getName().equals("Hostage")) {

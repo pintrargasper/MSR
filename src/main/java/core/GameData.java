@@ -1,6 +1,5 @@
 package core;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import core.database.objects.MissionBestScore;
 import core.database.objects.Settings;
@@ -50,6 +49,9 @@ public class GameData {
     public static String CURRENT_CURSOR_SKIN;
     public static String CURRENT_AIM_SKIN;
     public static String CURRENT_WEAPON_SKIN;
+    public static int CURRENT_WEAPON_WIDTH;
+    public static int CURRENT_WEAPON_HEIGHT;
+    public static String CURRENT_WEAPON_EFFECT;
     public static String CURRENT_ENEMY_WEAPON_SKIN = "1";
 
     //ScrollPane
@@ -58,7 +60,7 @@ public class GameData {
     //Game
     public static int PLAYER_LIVES;
     public static int PLAYER_FIRED_BULLETS;
-    public static float WEAPON_SPEED = 0f;
+    public static float CURRENT_WEAPON_SPEED = 0f;
     public static int ENEMY_COUNT;
     public static int ENEMY_KILLED_COUNT;
     public static int ENEMY_FINAL_COUNT;

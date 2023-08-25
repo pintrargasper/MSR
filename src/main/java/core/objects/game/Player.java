@@ -55,12 +55,7 @@ public class Player extends PlayerEntity {
         y = body.getPosition().y * GameData.PPM;
         getPlayerRectangle().x = x;
         getPlayerRectangle().y = y;
-
-        if (GameData.PLAYER_LIVES != 0) {
-            checkUserInput();
-        } else {
-            GameData.SOUND_EFFECT_PLAYER.stopAll();
-        }
+        checkUserInput();
     }
 
     private void checkUserInput() {

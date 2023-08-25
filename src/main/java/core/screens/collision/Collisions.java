@@ -77,24 +77,29 @@ public class Collisions {
                 case "EnemyBulletPlayer", "PlayerEnemyBullet" -> {
                     addFixture(fixtureA, fixtureB);
                     navigationBar.playerLives();
+                    GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.HIT_EFFECT);
                 }
                 case "HostagePlayerBullet", "PlayerBulletHostage" -> {
                     addFixture(fixtureA, fixtureB);
                     GameData.HOSTAGE_KILLED_COUNT++;
                     GameData.WEAPON_KILLS++;
+                    GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.HIT_EFFECT);
                 }
                 case "HostageEnemyBullet", "EnemyBulletHostage" -> {
                     addFixture(fixtureA, fixtureB);
                     GameData.HOSTAGE_KILLED_COUNT++;
+                    GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.HIT_EFFECT);
                 }
                 case "VipEnemyBullet", "EnemyBulletVip" -> {
                     addFixture(fixtureA, fixtureB);
                     GameData.VIP_KILLED_COUNT++;
+                    GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.HIT_EFFECT);
                 }
                 case "VipPlayerBullet", "PlayerBulletVip" -> {
                     addFixture(fixtureA, fixtureB);
                     GameData.VIP_KILLED_COUNT++;
                     GameData.WEAPON_KILLS++;
+                    GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.HIT_EFFECT);
                 }
                 default -> {
 

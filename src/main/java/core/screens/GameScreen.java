@@ -170,7 +170,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void update(float delta) {
-        world.step(delta, 6, 2); //Math.min(delta, 1 / 60f)
+        world.step(delta, 6, 2);
         world.clearForces();
 
         centerCameraOnPlayer();
@@ -222,20 +222,26 @@ public class GameScreen extends ScreenAdapter {
 
     private void checkGameFinnish() {
         if (GameData.ENEMY_COUNT == 0 && GameData.HOSTAGE_COUNT == 0 && GameData.HOSTAGE_KILLED_COUNT < 2 && GameData.VIP_COUNT == 0 && GameData.VIP_KILLED_COUNT == 0) {
+            GameData.SOUND_EFFECT_PLAYER.stopAll();
             gameScreenView.showGameFinnishPopup(mission, durationTimer);
         }
     }
 
     private void checkGameOver() {
         if (GameData.PLAYER_LIVES == 0) {
-            gameScreenView.showGameOverPopup("lives");
+            endGame("lives");
         } else {
             if (GameData.VIP_KILLED_COUNT != 0 && GameData.VIP_COUNT == 0 && GameData.HOSTAGE_COUNT == 0 && GameData.ENEMY_COUNT == 0) {
-                gameScreenView.showGameOverPopup("vip");
+                endGame("vip");
             } else if (GameData.HOSTAGE_KILLED_COUNT >= 2 && GameData.HOSTAGE_COUNT == 0 && GameData.VIP_COUNT == 0 && GameData.ENEMY_COUNT == 0) {
-                gameScreenView.showGameOverPopup("hostage");
+                endGame("hostage");
             }
         }
+    }
+
+    private void endGame(String reason) {
+        GameData.SOUND_EFFECT_PLAYER.stopAll();
+        gameScreenView.showGameOverPopup(reason);
     }
 
     public void setPlayer(Player player) {

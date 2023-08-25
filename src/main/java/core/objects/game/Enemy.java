@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.TimeUtils;
 import core.GameData;
+import core.SoundEffectPlayer;
 import core.screens.GameScreen;
 import core.screens.helper.BodyHelper;
 
@@ -60,6 +61,7 @@ public class Enemy extends EnemyEntity {
         }
 
         if (TimeUtils.timeSinceNanos(startTime) >= timer) {
+            GameData.SOUND_EFFECT_PLAYER.playEffect(SoundEffectPlayer.SoundEffectType.ENEMY_SHOOT_EFFECT);
             float angle = Bullet.getBulletAngle(this, player);
             double weaponLength = Math.sqrt(Math.pow(weapon.getHeight(), 2) + Math.pow(weapon.getWidth(),2));
 
