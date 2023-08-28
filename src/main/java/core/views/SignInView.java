@@ -12,10 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
 import core.*;
-import core.database.AccountConnection;
-import core.database.MissionConnection;
-import core.database.SettingsConnection;
-import core.database.SkinConnection;
+import core.database.*;
 import core.objects.Account;
 import core.objects.LeaderBoard;
 import core.web.PicturesDownloader;
@@ -139,8 +136,15 @@ public class SignInView {
                     @Override
                     public void run() {
                         try {
+                            var signInData = AccountConnection.signIn(usernameField.getText(), passwordField.getText());
+
+                            if (signInData.matches("-1")) {
+                                errorLabel.setText("Wrong username or password");
+                                return;
+                            }
+
                             Account account = new Account();
-                            account.setId(Long.parseLong(usernameField.getText()));
+                            account.setId(Long.parseLong(ApiResponse.getDataFromGameToken(signInData).get("id").toString()));
                             GameData.PLAYER_ACCOUNT = account;
 
                             account = AccountConnection.getAccountDetails();

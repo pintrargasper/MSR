@@ -2,10 +2,11 @@ package core.database;
 
 public class API {
 
-    //public static final String HOST = "https://api.memostickrescue.eu.org/";
-    public static final String HOST = "http://localhost:8079/";
+    public static final String HOST = "https://api.memostickrescue.eu.org/";
+    //public static final String HOST = "http://localhost:8079/";
 
     //Account
+    public static final String API_SIGN_IN = HOST + "web-sign-in";
     public static final String API_GET_ACCOUNT_DETAILS = HOST + "game-get-account-details";
     public static final String API_GET_LEADERBOARD = HOST + "web-get-leader-board-statistics";
 

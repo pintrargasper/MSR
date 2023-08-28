@@ -1,6 +1,7 @@
 package core;
 
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import core.database.objects.MissionBestScore;
 import core.database.objects.Settings;
 import core.objects.Account;

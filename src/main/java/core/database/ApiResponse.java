@@ -33,8 +33,6 @@ public class ApiResponse {
         String payload = new String(decoder.decode(chunks[1]));
 
         JSONParser parse = new JSONParser();
-        JSONObject object = (JSONObject) parse.parse(payload);
-
-        return object;
+        return (JSONObject) parse.parse(payload);
     }
 }

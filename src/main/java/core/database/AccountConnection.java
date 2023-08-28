@@ -11,6 +11,20 @@ import java.util.ArrayList;
 
 public class AccountConnection {
 
+    public static String signIn(String username, String password) {
+        RequestBody formBody = new FormBody.Builder()
+                .add("usernameEmail", username)
+                .add("password", password)
+                .build();
+        String response;
+        try {
+            response = ApiResponse.getResponse(API.API_SIGN_IN, formBody);
+        } catch (Exception e) {
+            response = "";
+        }
+        return response;
+    }
+
     public static Account getAccountDetails() {
         RequestBody formBody = new FormBody.Builder()
                 .add("idUser", String.valueOf(GameData.PLAYER_ACCOUNT.getId()))
