@@ -33,7 +33,9 @@ public class PicturesDownloader {
 
     private void checkIfDirectoryExists(File... directory) {
         for (File file: directory) {
-            if (!file.exists()) file.mkdirs();
+            if (!file.exists()) {
+                file.mkdirs();
+            }
         }
     }
 }

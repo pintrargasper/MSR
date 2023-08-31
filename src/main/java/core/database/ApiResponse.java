@@ -3,13 +3,14 @@ package core.database;
 import okhttp3.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import java.util.Base64;
 
 public class ApiResponse {
 
     public static String getResponse(String url, RequestBody formBody) throws Exception {
         OkHttpClient client = new OkHttpClient();
+
+        //-Djavax.net.ssl.trustStore="C:\Users\gaspe rpintar\OneDrive\Namizje\Projekt-Igra\MemoStickRescue\src\main\resources\certificate\cacerts"
 
         Request request = new Request.Builder()
                 .url(url)
