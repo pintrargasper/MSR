@@ -104,7 +104,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>com.akathist.maven.plugins.launch4j</groupId>
                 <artifactId>launch4j-maven-plugin</artifactId>
@@ -117,16 +116,26 @@
                             <goal>launch4j</goal>
                         </goals>
                         <configuration>
+                            <dontWrapJar>false</dontWrapJar>
                             <headerType>gui</headerType>
                             <jar>target/Memo Stick Rescue-jar-with-dependencies.jar</jar>
                             <outfile>target/Memo Stick Rescue.exe</outfile>
-                            <downloadUrl>https://java.com/download</downloadUrl>
-                            <classPath>
-                                <mainClass>DesktopLauncher.java</mainClass>
-                            </classPath>
+                            <errTitle></errTitle>
+                            <cmdLine></cmdLine>
+                            <chdir>.</chdir>
+                            <priority>normal</priority>
+                            <downloadUrl></downloadUrl>
+                            <supportUrl></supportUrl>
+                            <stayAlive>false</stayAlive>
+                            <restartOnCrash>false</restartOnCrash>
+                            <manifest></manifest>
                             <icon>src/main/resources/pictures/icon/logo.ico</icon>
                             <jre>
-                                <path>%JAVA_HOME%</path>
+                                <path>%JAVA_HOME%;%PATH%</path>
+                                <requiresJdk>false</requiresJdk>
+                                <requires64Bit>false</requires64Bit>
+                                <minVersion>1</minVersion>
+                                <maxVersion></maxVersion>
                             </jre>
                             <versionInfo>
                                 <fileVersion>1.0.0.0</fileVersion>
@@ -141,7 +150,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>
