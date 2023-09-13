@@ -77,6 +77,7 @@ public class GameScreenView {
             mission.setMaxScore(maxScore);
 
             account.setMoney(account.getMoney() + update.getTotalMoney());
+            account.setRank(update.getRank());
 
             gameFinnishPopup.setPopup(Money.format(update.getEarnedMoney()), Money.format(update.getHostageKilledMoney()), Money.format(update.getEnemyKilledMoney()), Money.format(update.getAmmoCosts()), update.getUsedTime(), update.getBonusPenalty(), Money.format(update.getTotalMoney()), update.getTotalMoney());
         } else {

@@ -19,23 +19,21 @@ public class Account {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getUsername() {
         return username;
     }
-
     public int getRank() {
         return rank;
     }
-
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
     public float getMoney() {
         return money;
     }
-
     public void setMoney(float money) {
         this.money = money;
     }

@@ -9,8 +9,11 @@ public class Update {
     private String usedTime;
     private int bonusPenalty;
     private int totalMoney;
+    private int rank;
 
-    public Update(int earnedMoney, int hostageKilledMoney, int enemyKilledMoney, int ammoCosts, String usedTime, int bonusPenalty, int totalMoney) {
+    public Update() {}
+
+    public Update(int earnedMoney, int hostageKilledMoney, int enemyKilledMoney, int ammoCosts, String usedTime, int bonusPenalty, int totalMoney, int rank) {
         this.earnedMoney = earnedMoney;
         this.hostageKilledMoney = hostageKilledMoney;
         this.enemyKilledMoney = enemyKilledMoney;
@@ -18,9 +21,8 @@ public class Update {
         this.usedTime = usedTime;
         this.bonusPenalty = bonusPenalty;
         this.totalMoney = totalMoney;
+        this.rank = rank;
     }
-
-    public Update() {}
 
     public int getEarnedMoney() {
         return earnedMoney;
@@ -48,5 +50,9 @@ public class Update {
 
     public int getTotalMoney() {
         return totalMoney;
+    }
+
+    public int getRank() {
+        return rank;
     }
 }
