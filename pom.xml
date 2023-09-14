@@ -138,10 +138,10 @@
                                 <maxVersion/>
                             </jre>
                             <versionInfo>
-                                <fileVersion>1.0.0.0</fileVersion>
+                                <fileVersion>1.0.0.3</fileVersion>
                                 <txtFileVersion>1.0.0</txtFileVersion>
                                 <productVersion>1.0.0.0</productVersion>
-                                <txtProductVersion>1.0.2</txtProductVersion>
+                                <txtProductVersion>1.0.3</txtProductVersion>
                                 <fileDescription>Strategy video game</fileDescription>
                                 <productName>Memo Stick Rescue</productName>
                                 <internalName>Memo Stick Rescue</internalName>
