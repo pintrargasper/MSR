@@ -10,14 +10,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-import core.Background;
-import core.GameData;
-import core.Language;
-import core.Utils;
+import core.*;
 import core.database.SkinConnection;
 import core.objects.CustomSkin;
 import core.views.InventoryView;
-
 import java.util.ArrayList;
 
 public class InventoryPopup extends Table implements Screen {
@@ -28,7 +24,8 @@ public class InventoryPopup extends Table implements Screen {
     private final Label titleLabel, errorLabel;
     private final TextButton saveButton, closeButton;
     private CustomSkin currentWeapon;
-    private BasicPopup basicPopup;
+    private final BasicPopup basicPopup;
+    private final CustomCursor customCursor;
     private String player, bullet, cursor, aim, weapon;
 
     public InventoryPopup(InventoryView inventoryView, Stage stage, Utils utils, Skin skin) {
@@ -43,6 +40,7 @@ public class InventoryPopup extends Table implements Screen {
         this.saveButton = new TextButton(Language.get("button_save"), skin);
         this.closeButton = new TextButton(Language.get("button_inventory_close"), skin);
         this.basicPopup = new BasicPopup(stage, skin);
+        this.customCursor = new CustomCursor();
 
         mainTable.setBackground(Background.setBackground(Background.strongRed));
         innerTable.setBackground(Background.setBackground(Background.white));
@@ -71,6 +69,8 @@ public class InventoryPopup extends Table implements Screen {
                     GameData.CURRENT_WEAPON_EFFECT = currentWeapon.getSoundEffect();
                     GameData.CURRENT_WEAPON_WIDTH = currentWeapon.getWidth();
                     GameData.CURRENT_WEAPON_HEIGHT = currentWeapon.getHeight();
+
+                    customCursor.setCustomCursor("cursor");
 
                     message = Language.get("string_skins_saved");
                 } else {

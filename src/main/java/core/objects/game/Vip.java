@@ -11,7 +11,7 @@ public class Vip extends VipEntity {
 
     public Vip(float width, float height, Body body) {
         super(width, height, body);
-        this.sprite = new Sprite(new Texture("pictures/skins/vip/1/vip-1-stand.png"));
+        this.sprite = new Sprite(new Texture(String.format("pictures/skins/vip/%s/vip-%s", 1, 1) + "-stand.png"));
     }
 
     @Override

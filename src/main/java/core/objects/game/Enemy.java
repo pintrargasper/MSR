@@ -23,9 +23,9 @@ public class Enemy extends EnemyEntity {
     public Enemy(float width, float height, Body body, GameScreen gameScreen, OrthographicCamera orthographicCamera, BodyHelper bodyHelper, Weapon weapon) {
         super(width, height, body, weapon);
         this.speed = 10f;
-        this.sprite = new Sprite(new Texture("pictures/skins/enemy/1/enemy-1-stand.png"));
-        this.leftSprite = new Sprite(new Texture("pictures/skins/enemy/1/enemy-1-left.png"));
-        this.rightSprite = new Sprite(new Texture("pictures/skins/enemy/1/enemy-1-right.png"));
+        this.sprite = new Sprite(new Texture(String.format("pictures/skins/enemy/%s/enemy-%s", 1, 1) + "-stand.png"));
+        this.leftSprite = new Sprite(new Texture(String.format("pictures/skins/enemy/%s/enemy-%s", 1, 1) + "-left.png"));
+        this.rightSprite = new Sprite(new Texture(String.format("pictures/skins/enemy/%s/enemy-%s", 1, 1) + "-right.png"));
         this.gameScreen = gameScreen;
         this.orthographicCamera = orthographicCamera;
         this.bodyHelper = bodyHelper;
@@ -71,7 +71,7 @@ public class Enemy extends EnemyEntity {
 
             Body body = bodyHelper.createObjectBody(5, 5, bulletX, bulletY, "Bullet");
             body.setUserData("EnemyBullet");
-            gameScreen.enemyBulletsList.add(new Bullet(body, angle));
+            gameScreen.enemyBulletsList.add(new Bullet(body, angle, GameData.CURRENT_ENEMY_BULLET_SKIN));
             startTime = TimeUtils.nanoTime();
         }
     }

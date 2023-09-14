@@ -4,20 +4,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.SnapshotArray;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import core.CustomCursor;
 import core.GameData;
-import core.Utils;
 import core.views.MenuView;
 
 public class MenuScreen extends ScreenAdapter {
 
     private final Stage stage;
     private final MenuView menuView;
+    private final CustomCursor customCursor;
 
     public MenuScreen() {
         this.stage = new Stage(new FitViewport(GameData.GAME_WIDTH, GameData.GAME_HEIGHT));
         this.menuView = new MenuView(stage);
+        this.customCursor = new CustomCursor();
+
+        customCursor.setCustomCursor("cursor");
 
         var missionsBestScore = GameData.MISSIONS_BEST_SCORE;
         stage.addActor(menuView.getView(stage, missionsBestScore));

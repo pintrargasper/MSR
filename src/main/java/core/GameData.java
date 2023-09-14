@@ -54,6 +54,7 @@ public class GameData {
     public static int CURRENT_WEAPON_HEIGHT;
     public static String CURRENT_WEAPON_EFFECT;
     public static String CURRENT_ENEMY_WEAPON_SKIN = "1";
+    public static String CURRENT_ENEMY_BULLET_SKIN = "1";
 
     //ScrollPane
     public static final int SCROLL_PANE_SIZE = 1350;

@@ -11,7 +11,7 @@ public class Hostage extends HostageEntity {
 
     public Hostage(float width, float height, Body body) {
         super(width, height, body);
-        this.sprite = new Sprite(new Texture("pictures/skins/hostage/1/hostage-1-stand.png"));
+        this.sprite = new Sprite(new Texture(String.format("pictures/skins/hostage/%s/hostage-%s", 1, 1) + "-stand.png"));
     }
 
     @Override

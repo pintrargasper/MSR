@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import core.CustomCursor;
 import core.GameData;
 import core.Utils;
 import core.database.objects.Settings;
@@ -42,6 +43,7 @@ public class GameScreen extends ScreenAdapter {
     private final Settings settings;
     private final Utils utils;
     private Player player;
+    private CustomCursor customCursor;
     public ArrayList<Bullet> playerBulletsList, removePlayerBulletsList, enemyBulletsList, removeEnemyBulletsList;
     public ArrayList<Enemy> enemyList, removeEnemyList;
     public ArrayList<Hostage> hostageList, removeHostageList;
@@ -63,6 +65,7 @@ public class GameScreen extends ScreenAdapter {
         this.world = new World(new Vector2(0, -25f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         this.orthographicCamera = new OrthographicCamera();
+        this.customCursor = new CustomCursor();
         playerBulletsList = new ArrayList<>();
         removePlayerBulletsList = new ArrayList<>();
         enemyBulletsList = new ArrayList<>();
@@ -85,6 +88,8 @@ public class GameScreen extends ScreenAdapter {
         this.gameStats = GameStats.IN_PROCESS;
 
         orthographicCamera.setToOrtho(false, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f);
+
+        customCursor.setCustomCursor("aim");
 
         stage.addActor(gameScreenView.getView(mission.getName()));
         Gdx.input.setInputProcessor(stage);
@@ -141,11 +146,12 @@ public class GameScreen extends ScreenAdapter {
         if (utils.isButtonOrKeyJustPressed(settings.getKeyPauseCode())) {
             if (gameStats == GameStats.IN_PROCESS) {
                 gameScreenView.showPausePopup();
+                customCursor.setCustomCursor("cursor");
             } else {
                 gameScreenView.closePausePopup();
+                customCursor.setCustomCursor("aim");
             }
         }
-
         stage.draw();
     }
 
@@ -166,6 +172,7 @@ public class GameScreen extends ScreenAdapter {
         if (gameStats == GameStats.IN_PROCESS) {
             gameStats = GameStats.PAUSE;
             gameScreenView.showPausePopup();
+            customCursor.setCustomCursor("cursor");
         }
     }
 
@@ -224,6 +231,7 @@ public class GameScreen extends ScreenAdapter {
         if (GameData.ENEMY_COUNT == 0 && GameData.HOSTAGE_COUNT == 0 && GameData.HOSTAGE_KILLED_COUNT < 2 && GameData.VIP_COUNT == 0 && GameData.VIP_KILLED_COUNT == 0) {
             GameData.SOUND_EFFECT_PLAYER.stopAll();
             gameScreenView.showGameFinnishPopup(mission, durationTimer);
+            customCursor.setCustomCursor("cursor");
         }
     }
 
@@ -242,6 +250,7 @@ public class GameScreen extends ScreenAdapter {
     private void endGame(String reason) {
         GameData.SOUND_EFFECT_PLAYER.stopAll();
         gameScreenView.showGameOverPopup(reason);
+        customCursor.setCustomCursor("cursor");
     }
 
     public void setPlayer(Player player) {

@@ -39,9 +39,9 @@ public class Player extends PlayerEntity {
         this.orthographicCamera = orthographicCamera;
         this.settings = GameData.SETTINGS;
         this.utils = new Utils();
-        this.sprite = new Sprite(new Texture("pictures/skins/player/" + GameData.CURRENT_PLAYER_SKIN + "/player-" + GameData.CURRENT_PLAYER_SKIN + "-stand.png"));
-        this.leftSprite = new Sprite(new Texture("pictures/skins/player/" + GameData.CURRENT_PLAYER_SKIN + "/player-" + GameData.CURRENT_PLAYER_SKIN + "-left.png"));
-        this.rightSprite = new Sprite(new Texture("pictures/skins/player/" + GameData.CURRENT_PLAYER_SKIN + "/player-" + GameData.CURRENT_PLAYER_SKIN + "-right.png"));
+        this.sprite = new Sprite(new Texture(String.format("pictures/skins/player/%s/player-%s", GameData.CURRENT_PLAYER_SKIN, GameData.CURRENT_PLAYER_SKIN) + "-stand.png"));
+        this.leftSprite = new Sprite(new Texture(String.format("pictures/skins/player/%s/player-%s", GameData.CURRENT_PLAYER_SKIN, GameData.CURRENT_PLAYER_SKIN) + "-left.png"));
+        this.rightSprite = new Sprite(new Texture(String.format("pictures/skins/player/%s/player-%s", GameData.CURRENT_PLAYER_SKIN, GameData.CURRENT_PLAYER_SKIN) + "-right.png"));
     }
 
     @Override
@@ -140,7 +140,7 @@ public class Player extends PlayerEntity {
 
         Body body = bodyHelper.createObjectBody(5, 5, bulletX, bulletY, "Bullet");
         body.setUserData("PlayerBullet");
-        gameScreen.playerBulletsList.add(new Bullet(body, angle));
+        gameScreen.playerBulletsList.add(new Bullet(body, angle, GameData.CURRENT_BULLET_SKIN));
         GameData.PLAYER_FIRED_BULLETS++;
     }
 

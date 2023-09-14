@@ -10,15 +10,13 @@ import core.GameData;
 
 public class Bullet extends BulletEntity {
 
-    private int jumpCounter;
     private final Sprite sprite;
     public boolean remove;
 
-    public Bullet(Body body, float angle) {
+    public Bullet(Body body, float angle, String bulletSkin) {
         super(body, angle);
         this.speed = 20f;
-        this.jumpCounter = 0;
-        this.sprite = new Sprite(new Texture("pictures/skins/bullet/" + GameData.CURRENT_BULLET_SKIN + "/bullet-" + GameData.CURRENT_BULLET_SKIN + "-stand.png"));
+        this.sprite = new Sprite(new Texture(String.format("pictures/skins/bullet/%s/bullet-%s", bulletSkin, bulletSkin) + "-stand.png"));
         this.remove = false;
     }
 

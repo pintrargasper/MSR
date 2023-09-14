@@ -16,8 +16,8 @@ public class Weapon extends WeaponEntity {
 
     public Weapon(float width, float height, Body body, float speed, String type, String soundEffect) {
         super(width, height, speed, body);
-        this.leftSprite = new Sprite(new Texture("pictures/skins/weapon/" + type + "/weapon-" + type + "-left.png"));
-        this.rightSprite = new Sprite(new Texture("pictures/skins/weapon/" + type + "/weapon-" + type + "-right.png"));
+        this.leftSprite = new Sprite(new Texture(String.format("pictures/skins/weapon/%s/weapon-%s", type, type) + "-left.png"));
+        this.rightSprite = new Sprite(new Texture(String.format("pictures/skins/weapon/%s/weapon-%s", type, type) + "-right.png"));
         this.sprite = rightSprite;
         GameData.SOUND_EFFECT_MAP.put(SoundEffectPlayer.SoundEffectType.SHOOT_EFFECT, Gdx.audio.newMusic(Gdx.files.internal("sound-effects/" + soundEffect)));
         body.destroyFixture(body.getFixtureList().first());
